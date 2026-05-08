@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetCode Pro | Interviewer Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'Fira Code', monospace; }
+
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .problem-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .problem-card:hover {
+            transform: translateY(-4px);
+            border-color: #6366f1;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            animation: fadeIn 0.2s ease-out;
+            align-items: center;
+            justify-content: center;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-[#0f172a] text-slate-200 min-h-screen">
+
+    <nav class="sticky top-0 z-50 px-6 py-4 glass border-b border-slate-700/50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-indigo-600 rounded-lg shadow-lg shadow-indigo-500/20">
+                    <i class="fas fa-code text-white text-xl"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight text-white">LeetCode<span class="text-indigo-400">Pro</span></span>
+            </div>
+            <div id="nav-links" class="flex gap-2 overflow-x-auto no-scrollbar"></div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        <div id="section-header" class="text-center mb-16">
+            <h2 id="section-title" class="text-5xl font-black text-white mb-4 tracking-tight">Loading...</h2>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                Master the art of technical interviews with curated problems, expert hints, and optimized solutions.
+            </p>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mb-12 justify-center">
+            <button onclick="filterDifficulty('easy')" class="diff-btn px-5 py-2 rounded-xl border border-green-500/30 text-green-400 font-medium hover:bg-green-500/10 transition-all backdrop-blur-sm">Easy</button>
+            <button onclick="filterDifficulty('medium')" class="diff-btn px-5 py-2 rounded-xl border border-yellow-500/30 text-yellow-400 font-medium hover:bg-yellow-500/10 transition-all backdrop-blur-sm">Medium</button>
+            <button onclick="filterDifficulty('hard')" class="diff-btn px-5 py-2 rounded-xl border border-red-500/30 text-red-400 font-medium hover:bg-red-500/10 transition-all backdrop-blur-sm">Hard</button>
+            <button onclick="filterDifficulty('all')" class="diff-btn px-5 py-2 rounded-xl border border-slate-500/30 text-slate-300 font-medium hover:bg-slate-500/10 transition-all backdrop-blur-sm">All Problems</button>
+        </div>
+
+        <div id="problems-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8"></div>
+    </main>
+
+    <div id="solutionModal" class="modal-overlay p-4">
+        <div class="bg-slate-900 border border-slate-700 rounded-3xl w-full max-w-6xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+            <div class="px-8 py-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 bg-indigo-500/20 rounded-lg">
+                        <i class="fas fa-code text-indigo-400"></i>
+                    </div>
+                    <h3 id="modalTitle" class="text-xl font-bold text-white">Solution</h3>
+                </div>
+                <button onclick="closeModal()" class="p-2 hover:bg-slate-800 rounded-full transition-colors text-slate-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto custom-scrollbar bg-[#0b1222]">
+                <div class="relative group">
+                    <div class="absolute -top-3 left-4 px-2 py-1 bg-slate-800 text-slate-500 text-[10px] font-bold uppercase tracking-widest rounded border border-slate-700">
+                        Java Implementation
+                    </div>
+                    <pre id="modalCode" class="code-font text-sm leading-relaxed text-indigo-300 overflow-x-auto"></pre>
+                </div>
+            </div>
+            <div class="p-4 border-t border-slate-800 flex justify-end bg-slate-900/50">
+                <button onclick="closeModal()" class="px-6 py-2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold rounded-xl transition-all">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sections = ['string', 'array', 'advancedgraphs', 'dp'];
+        let currentSection = 'string';
+        let currentFilter = 'all';
+
+        // Note: This data is used as a fallback or for 'string' section.
+        // The app primarily fetches from /api/problems.
+        const stringData = {
+            easy: [
+                {
+                    title: "Fizz Buzz",
+                    description: "Return a list of strings from 1 to n. Divisible by 3 -> \"Fizz\", by 5 -> \"Buzz\", by both -> \"FizzBuzz\", else the number.",
+                    hint: "Check divisibility by 15 first, or build the string by appending \"Fizz\" and \"Buzz\".",
+                    examples: "Input: n = 15\nOutput: [\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\",\"Fizz\",\"7\",\"8\",\"Fizz\",\"Buzz\",\"11\",\"Fizz\",\"13\",\"14\",\"FizzBuzz\"]",
+                    leetcode: "https://leetcode.com/problems/fizz-buzz/",
+                    video: "https://www.youtube.com/watch?v=E3eO7jTFElU",
+                    solution: "package string.easy;\n\nimport java.util.*;\n\n/**\n * Problem: Fizz Buzz\n * Topic: String\n * Level: Easy\n * \n * Problem Description:\n * Given an integer n, return a list of strings representing the FizzBuzz sequence from 1 to n.\n * - For numbers divisible by 3, output \"Fizz\"\n * - For numbers divisible by 5, output \"Buzz\"\n * - For numbers divisible by both 3 and 5, output \"FizzBuzz\"\n * - For all other numbers, output the number itself as a string\n * \n * Hint: Check divisibility by 15 (both 3 and 5) first, or build the string by appending \"Fizz\" and \"Buzz\".\n * \n * Example:\n * Input: n = 15\n * Expected Output: [\"1\",\"2\",\"Fizz\",\"4\",\"Buzz\",\"Fizz\",\"7\",\"8\",\"Fizz\",\"Buzz\",\"11\",\"Fizz\",\"13\",\"14\",\"FizzBuzz\"]\n * \n * Constraints:\n * - 1 <= n <= 10^4\n * \n * Video Explanation: https://www.youtube.com/watch?v=E3eO7jTFElU\n * LeetCode Problem Link: https://leetcode.com/problems/fizz-buzz/\n */\npublic class FizzBuzz {\n\n    public static void main(String[] args) {\n        System.out.println(\"=== FizzBuzz ===\");\n        \n        List<String> result = (List<String>) solution(15);\n        System.out.println(\"Solution (n=15): \" + result);\n    }\n\n    public static Object solution(Object input) {\n        int n = (Integer) input;\n        List<String> result = new ArrayList<>();\n        \n        for (int i = 1; i <= n; i++) {\n            if (i % 15 == 0) result.add(\"FizzBuzz\");\n            else if (i % 3 == 0) result.add(\"Fizz\");\n            else if (i % 5 == 0) result.add(\"Buzz\");\n            else result.add(String.valueOf(i));\n        }\n        return result;\n    }\n}"
+                },
+                {
+                    title: "Is Subsequence",
+                    description: "Determine if s is a subsequence of t (can be formed by deleting characters from t without changing order).",
+                    hint: "Use two pointers; advance t pointer always, s pointer only on match.",
+                    examples: "Input: s = \"abc\", t = \"ahbgdc\"\nOutput: true",
+                    leetcode: "https://leetcode.com/problems/is-subsequence/",
+                    video: "https://www.youtube.com/watch?v=I1yvLEkI6oo",
+                    solution: "package org.example.problems.string.easy;\n\nimport java.util.*;\n\npublic class IsSubsequence {\n    public static boolean solution(String s, String t) {\n        int sPointer = 0, tPointer = 0;\n        while (tPointer < t.length() && sPointer < s.length()) {\n            if (s.charAt(sPointer) == t.charAt(tPointer)) sPointer++;\n            tPointer++;\n        }\n        return sPointer == s.length();\n    }\n}"
+                },
+                {
+                    title: "Longest Common Prefix",
+                    description: "Find the longest common prefix string amongst an array of strings.",
+                    hint: "Horizontal scanning: Start with first string and trim it until it matches the next string.",
+                    examples: "Input: [\"flower\",\"flow\",\"flight\"]\nOutput: \"fl\"",
+                    leetcode: "https://leetcode.com/problems/longest-common-prefix/",
+                    video: "https://www.youtube.com/watch?v=PWoIZxcamsQ",
+                    solution: "package org.example.problems.string.easy;\n\npublic class LongestCommonPrefix {\n    public static String solution(String[] strs) {\n        if (strs == null || strs.length == 0) return \"\";\n        String prefix = strs[0];\n        for (int i = 1; i < strs.length; i++) {\n            while (!strs[i].startsWith(prefix)) {\n                prefix = prefix.substring(0, prefix.length() - 1);\n                if (prefix.isEmpty()) return \"\";\n            }\n        }\n        return prefix;\n    }\n}"
+                },
+                {
+                    title: "Palindrome Linked List",
+                    description: "Return true if a singly linked list reads the same forward and backward.",
+                    hint: "Convert to array and use two pointers to compare from both ends.",
+                    examples: "Input: [1,2,2,1]\nOutput: true",
+                    leetcode: "https://leetcode.com/problems/palindrome-linked-list/",
+                    video: "https://www.youtube.com/watch?v=uGGAJxeXa4U",
+                    solution: "package org.example.problems.string.easy;\n\nimport java.util.*;\n\npublic class PalindromeLinkedList {\n    public static boolean solution(ListNode head) {\n        if (head == null || head.next == null) return true;\n        List<Integer> values = new ArrayList<>();\n        ListNode current = head;\n        while (current != null) { values.add(current.val); current = current.next; }\n        int left = 0, right = values.size() - 1;\n        while (left < right) {\n            if (!values.get(left).equals(values.get(right))) return false;\n            left++; right--;\n        }\n        return true;\n    }\n}"
+                },
+                {
+                    title: "Remove Palindromic Subsequences",
+                    description: "Minimum steps to make string empty by removing palindromic subsequences (only 'a' and 'b' used).",
+                    hint: "If palindrome, 1 step. Otherwise, 2 steps (remove all 'a's then all 'b's).",
+                    examples: "Input: s = \"ababa\"\nOutput: 1",
+                    leetcode: "https://leetcode.com/problems/remove-palindromic-subsequences/",
+                    video: "https://www.youtube.com/watch?v=nP7FfN0bj8c",
+                    solution: "package org.example.problems.string.easy;\n\npublic class RemovePalindromicSubsequences {\n    public static int solution(String s) {\n        int left = 0, right = s.length() - 1;\n        while (left < right) {\n            if (s.charAt(left++) != s.charAt(right--)) return 2;\n        }\n        return 1;\n    }\n}"
+                },
+                {
+                    title: "Reverse Vowels of a String",
+                    description: "Reverse only the vowels ('a', 'e', 'i', 'o', 'u') in a string, preserving other characters.",
+                    hint: "Use two pointers; swap when both point to vowels.",
+                    examples: "Input: s = \"hello\"\nOutput: \"holle\"",
+                    leetcode: "https://leetcode.com/problems/reverse-vowels-of-a-string/",
+                    video: "https://www.youtube.com/watch?v=bjKt6xj9VgM",
+                    solution: "package org.example.problems.string.easy;\n\npublic class ReverseVowelsOfAString {\n    public static String solution(String s) {\n        char[] chars = s.toCharArray();\n        int left = 0, right = chars.length - 1;\n        while (left < right) {\n            while (left < right && \"aeiouAEIOU\".indexOf(chars[left]) == -1) left++;\n            while (left < right && \"aeiouAEIOU\".indexOf(chars[right]) == -1) right--;\n            if (left < right) {\n                char temp = chars[left];\n                chars[left++] = chars[right];\n                chars[right--] = temp;\n            }\n        }\n        return new String(chars);\n    }\n}"
+                },
+                {
+                    title: "Valid Anagram",
+                    description: "Return true if string t is an anagram of s (rearranged letters).",
+                    hint: "Use a frequency array of size 26 to count occurrences of each lowercase letter.",
+                    examples: "Input: s = \"anagram\", t = \"nagaram\"\nOutput: true",
+                    leetcode: "https://leetcode.com/problems/valid-anagram/",
+                    video: "https://www.youtube.com/watch?v=qyQni3rz-ko",
+                    solution: "package org.example.problems.string.easy;\n\npublic class ValidAnagram {\n    public static boolean solution(String s, String t) {\n        if (s.length() != t.length()) return false;\n        int[] chars = new int[26];\n        for (int i = 0; i < s.length(); i++) {\n            chars[s.charAt(i) - 'a']++;\n            chars[t.charAt(i) - 'a']--;\n        }\n        for (int count : chars) if (count != 0) return false;\n        return true;\n    }\n}"
+                },
+                {
+                    title: "Valid Palindrome",
+                    description: "Check if a phrase is a palindrome after converting to lowercase and removing non-alphanumeric characters.",
+                    hint: "Two pointers; skip non-alphanumeric characters and compare case-insensitively.",
+                    examples: "Input: s = \"A man, a plan, a canal: Panama\"\nOutput: true",
+                    leetcode: "https://leetcode.com/problems/valid-palindrome/",
+                    video: "https://www.youtube.com/watch?v=MFPmKyThyHk",
+                    solution: "package org.example.problems.string.easy;\n\npublic class ValidPalindrome {\n    public static boolean solution(String s) {\n        int left = 0, right = s.length() - 1;\n        while (left < right) {\n            while (left < right && !Character.isLetterOrDigit(s.charAt(left))) left++;\n            while (left < right && !Character.isLetterOrDigit(s.charAt(right))) right--;\n            if (Character.toLowerCase(s.charAt(left++)) != Character.toLowerCase(s.charAt(right--))) return false;\n        }\n        return true;\n    }\n}"
+                },
+                {
+                    title: "Valid Parentheses",
+                    description: "Determine if a string of brackets ()[]{} is valid (closed in correct order and by matching types).",
+                    hint: "Use a stack to store open brackets and pop them when a matching closing bracket is found.",
+                    examples: "Input: s = \"()[]{}\"\nOutput: true",
+                    leetcode: "https://leetcode.com/problems/valid-parentheses/",
+                    video: "https://www.youtube.com/watch?v=D4l9TK0tWcI",
+                    solution: "package org.example.problems.string.easy;\n\nimport java.util.*;\n\npublic class ValidParentheses {\n    public static boolean solution(String s) {\n        Stack<Character> stack = new Stack<>();\n        Map<Character, Character> map = Map.of(')', '(', '}', '{', ']', '[');\n        for (char c : s.toCharArray()) {\n            if (map.containsKey(c)) {\n                if (stack.isEmpty() || stack.pop() != map.get(c)) return false;\n            } else stack.push(c);\n        }\n        return stack.isEmpty();\n    }\n}"
+                }
+            ],
+            medium: [
+                {
+                    title: "Encode and Decode Strings",
+                    description: "Design an algorithm to encode a list of strings to a single string and decode it back.",
+                    hint: "Length-prefix encoding: 'length#string'.",
+                    examples: "Input: [\"Hello\", \"World\"]\nOutput: \"5#Hello5#World\"",
+                    leetcode: "https://leetcode.com/problems/encode-and-decode-strings/",
+                    video: "https://www.youtube.com/watch?v=P5LQbpI4p_I",
+                    solution: "package org.example.problems.string.medium;\n\nimport java.util.*;\n\npublic class EncodeAndDecodeStrings {\n    public static String encode(List<String> strs) {\n        StringBuilder sb = new StringBuilder();\n        for (String s : strs) sb.append(s.length()).append(\"#\").append(s);\n        return sb.toString();\n    }\n    public static List<String> decode(String str) {\n        List<String> res = new ArrayList<>();\n        int i = 0;\n        while (i < str.length()) {\n            int hash = str.indexOf('#', i);\n            int len = Integer.parseInt(str.substring(i, hash));\n            res.add(str.substring(hash + 1, hash + 1 + len));\n            i = hash + 1 + len;\n        }\n        return res;\n    }\n}"
+                },
+                {
+                    title: "Group Anagrams",
+                    description: "Group an array of strings such that all anagrams are in the same group.",
+                    hint: "Sort each string and use it as a key in a HashMap.",
+                    examples: "Input: [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\nOutput: [[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]",
+                    leetcode: "https://leetcode.com/problems/group-anagrams/",
+                    video: "https://www.youtube.com/watch?v=dEMcIpBOHpg",
+                    solution: "package org.example.problems.string.medium;\n\nimport java.util.*;\n\npublic class GroupAnagrams {\n    public static List<List<String>> solution(String[] strs) {\n        Map<String, List<String>> map = new HashMap<>();\n        for (String s : strs) {\n            char[] chars = s.toCharArray();\n            Arrays.sort(chars);\n            String key = new String(chars);\n            map.computeIfAbsent(key, k -> new ArrayList<>()).add(s);\n        }\n        return new ArrayList<>(map.values());\n    }\n}"
+                },
+                {
+                    title: "Letter Combinations of a Phone Number",
+                    description: "Return all possible letter combinations a phone number string (2-9) could represent.",
+                    hint: "Use backtracking based on digit-to-letter mapping.",
+                    examples: "Input: digits = \"23\"\nOutput: [\"ad\",\"ae\",\"af\",\"bd\",\"be\",\"bf\",\"cd\",\"ce\",\"cf\"]",
+                    leetcode: "https://leetcode.com/problems/letter-combinations-of-a-phone-number/",
+                    video: "https://www.youtube.com/watch?v=dmYiOfy8a-k",
+                    solution: "package org.example.problems.string.medium;\n\nimport java.util.*;\n\npublic class LetterCombinations {\n    public static List<String> solution(String digits) {\n        if (digits.isEmpty()) return new ArrayList<>();\n        List<String> res = new ArrayList<>();\n        String[] map = {\"\", \"\", \"abc\", \"def\", \"ghi\", \"jkl\", \"mno\", \"pqrs\", \"tuv\", \"wxyz\"};\n        backtrack(res, digits, 0, \"\", map);\n        return res;\n    }\n    private static void backtrack(List<String> res, String digits, int idx, String cur, String[] map) {\n        if (idx == digits.length()) { res.add(cur); return; }\n        for (char c : map[digits.charAt(idx) - '0'].toCharArray()) backtrack(res, digits, idx + 1, cur + c, map);\n    }\n}"
+                },
+                {
+                    title: "Longest Palindromic Substring",
+                    description: "Return the longest palindromic substring in a given string.",
+                    hint: "Expand around each possible center (single character or gap).",
+                    examples: "Input: s = \"babad\"\nOutput: \"bab\"",
+                    leetcode: "https://leetcode.com/problems/longest-palindromic-substring/",
+                    video: "https://www.youtube.com/watch?v=92KOT17h8zw",
+                    solution: "package org.example.problems.string.medium;\n\npublic class LongestPalindromicSubstring {\n    public static String solution(String s) {\n        if (s == null || s.length() < 1) return \"\";\n        int start = 0, end = 0;\n        for (int i = 0; i < s.length(); i++) {\n            int len1 = expand(s, i, i);\n            int len2 = expand(s, i, i + 1);\n            int len = Math.max(len1, len2);\n            if (len > end - start) { start = i - (len - 1) / 2; end = i + len / 2; }\n        }\n        return s.substring(start, end + 1);\n    }\n    private static int expand(String s, int l, int r) {\n        while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) { l--; r++; }\n        return r - l - 1;\n    }\n}"
+                },
+                {
+                    title: "Longest Repeating Character Replacement",
+                    description: "Max length of a substring containing the same letter after at most k replacements.",
+                    hint: "Sliding window: valid if (window_length - max_freq) <= k.",
+                    examples: "Input: s = \"ABAB\", k = 2\nOutput: 4",
+                    leetcode: "https://leetcode.com/problems/longest-repeating-character-replacement/",
+                    video: "https://www.youtube.com/watch?v=FYyWsqFjkZk",
+                    solution: "package org.example.problems.string.medium;\n\npublic class LongestRepeatingCharReplacement {\n    public static int solution(String s, int k) {\n        int[] freq = new int[26];\n        int left = 0, maxFreq = 0, maxLen = 0;\n        for (int right = 0; right < s.length(); right++) {\n            maxFreq = Math.max(maxFreq, ++freq[s.charAt(right) - 'A']);\n            while (right - left + 1 - maxFreq > k) freq[s.charAt(left++) - 'A']--;\n            maxLen = Math.max(maxLen, right - left + 1);\n        }\n        return maxLen;\n    }\n}"
+                },
+                {
+                    title: "Longest Substring Without Repeating Characters",
+                    description: "Find the length of the longest substring without any repeating characters.",
+                    hint: "Sliding window with a map to store the last seen index of each character.",
+                    examples: "Input: s = \"abcabcbb\"\nOutput: 3",
+                    leetcode: "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+                    video: "https://www.youtube.com/watch?v=RMQ-gRQAY0o",
+                    solution: "package org.example.problems.string.medium;\n\nimport java.util.*;\n\npublic class LongestSubstringNoRepeat {\n    public static int solution(String s) {\n        Map<Character, Integer> map = new HashMap<>();\n        int maxLen = 0, left = 0;\n        for (int right = 0; right < s.length(); right++) {\n            if (map.containsKey(s.charAt(right))) left = Math.max(left, map.get(s.charAt(right)) + 1);\n            map.put(s.charAt(right), right);\n            maxLen = Math.max(maxLen, right - left + 1);\n        }\n        return maxLen;\n    }\n}"
+                },
+                {
+                    title: "Palindromic Substrings",
+                    description: "Return the number of palindromic substrings within a string.",
+                    hint: "Expand around each character and each pair of adjacent characters.",
+                    examples: "Input: s = \"aaa\"\nOutput: 6",
+                    leetcode: "https://leetcode.com/problems/palindromic-substrings/",
+                    video: "https://www.youtube.com/watch?v=WfkVe8egZbU",
+                    solution: "package org.example.problems.string.medium;\n\npublic class PalindromicSubstrings {\n    public static int solution(String s) {\n        int count = 0;\n        for (int i = 0; i < s.length(); i++) {\n            count += expand(s, i, i);\n            count += expand(s, i, i + 1);\n        }\n        return count;\n    }\n    private static int expand(String s, int l, int r) {\n        int cnt = 0;\n        while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) { cnt++; l--; r++; }\n        return cnt;\n    }\n}"
+                },
+                {
+                    title: "Reverse Words in a String",
+                    description: "Reverse the order of words in a string, separating them by a single space.",
+                    hint: "Split by whitespace, reverse the array, and join with spaces.",
+                    examples: "Input: s = \"the sky is blue\"\nOutput: \"blue is sky the\"",
+                    leetcode: "https://leetcode.com/problems/reverse-words-in-a-string/description/",
+                    video: "https://www.youtube.com/watch?v=WfkVe8egZbU",
+                    solution: "package org.example.problems.string.medium;\n\nimport java.util.*;\n\npublic class ReverseWordsInAString {\n    public static String solution(String s) {\n        String[] words = s.trim().split(\"\\\\s+\");\n        Collections.reverse(Arrays.asList(words));\n        return String.join(\" \", words);\n    }\n}"
+                }
+            ],
+            hard: [
+                {
+                    title: "Minimum Window Substring",
+                    description: "Find the minimum window in s that contains all characters of t.",
+                    hint: "Sliding window: expand right until valid, then contract left as much as possible.",
+                    examples: "Input: s = \"ADOBECODEBANC\", t = \"ABC\"\nOutput: \"BANC\"",
+                    leetcode: "https://leetcode.com/problems/minimum-window-substring/",
+                    video: "https://www.youtube.com/watch?v=tMx5JZSBWIE",
+                    solution: "package org.example.problems.string.hard;\n\nimport java.util.*;\n\npublic class MinimumWindowSubstring {\n    public static String solution(String s, String t) {\n        if (s.length() < t.length()) return \"\";\n        Map<Character, Integer> req = new HashMap<>();\n        for (char c : t.toCharArray()) req.put(c, req.getOrDefault(c, 0) + 1);\n        Map<Character, Integer> window = new HashMap<>();\n        int left = 0, minLen = Integer.MAX_VALUE, minStart = 0, formed = 0;\n        for (int right = 0; right < s.length(); right++) {\n            char c = s.charAt(right);\n            window.put(c, window.getOrDefault(c, 0) + 1);\n            if (req.containsKey(c) && window.get(c).equals(req.get(c))) formed++;\n            while (left <= right && formed == req.size()) {\n                if (right - left + 1 < minLen) { minLen = right - left + 1; minStart = left; }\n                char lChar = s.charAt(left++);\n                window.put(lChar, window.get(lChar) - 1);\n                if (req.containsKey(lChar) && window.get(lChar) < req.get(lChar)) formed--;\n            }\n        }\n        return minLen == Integer.MAX_VALUE ? \"\" : s.substring(minStart, minStart + minLen);\n    }\n}"
+                },
+                {
+                    title: "Text Justification",
+                    description: "Format text such that each line has exactly maxWidth characters and is fully justified.",
+                    hint: "Greedily pack words, then distribute spaces evenly. Last line is left-justified.",
+                    examples: "Input: words = [\"This\", \"is\", \"an\"...], maxWidth = 16\nOutput: [\"This    is    an\", ...]",
+                    leetcode: "https://leetcode.com/problems/text-justification/",
+                    video: "https://www.youtube.com/watch?v=Pf_1Ox9ud_w",
+                    solution: "package org.example.problems.string.hard;\n\nimport java.util.*;\n\npublic class TextJustification {\n    public static List<String> solution(String[] words, int maxWidth) {\n        List<String> res = new ArrayList<>();\n        int i = 0;\n        while (i < words.length) {\n            List<String> line = new ArrayList<>();\n            int lineLen = 0;\n            while (i < words.length && lineLen + words[i].length() + line.size() <= maxWidth) {\n                line.add(words[i++]);\n                lineLen += words[i-1].length();\n            }\n            res.add(justify(line, lineLen, maxWidth, i == words.length));\n        }\n        return res;\n    }\n    private static String justify(List<String> line, int len, int width, boolean last) {\n        StringBuilder sb = new StringBuilder();\n        int spaces = width - len;\n        int gaps = line.size() - 1;\n        if (last || gaps == 0) {\n            for (int j = 0; j < line.size(); j++) {\n                sb.append(line.get(j)).append(j < gaps ? \" \" : \"\");\n            }\n            while (sb.length() < width) sb.append(\" \");\n        } else {\n            int perGap = spaces / gaps, extra = spaces % gaps;\n            for (int j = 0; j < line.size(); j++) {\n                sb.append(line.get(j));\n                if (j < gaps) sb.append(\" \".repeat(perGap + (j < extra ? 1 : 0)));\n            }\n        }\n        return sb.toString();\n    }\n}"
+                }
+            ]
+        };
+
+        let cachedData = {
+            string: stringData
+        };
+
+        async function initNav() {
+            const nav = document.getElementById('nav-links');
+            sections.forEach(s => {
+                const btn = document.createElement('button');
+                btn.innerText = s.charAt(0).toUpperCase() + s.slice(1);
+                btn.className = `px-4 py-2 rounded-lg transition-all text-sm font-medium ${s === currentSection ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`;
+                btn.onclick = () => showSection(s);
+                nav.appendChild(btn);
+            });
+        }
+
+        async function showSection(section) {
+            currentSection = section;
+            currentFilter = 'all';
+            document.getElementById('section-title').innerText = section.charAt(0).toUpperCase() + section.slice(1) + " Problems";
+
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.className = `px-4 py-2 rounded-lg transition-all text-sm font-medium ${btn.innerText.toLowerCase() === section ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`;
+            });
+
+            await fetchProblems();
+        }
+
+        async function fetchProblems() {
+            const grid = document.getElementById('problems-grid');
+            grid.innerHTML = '<div class="col-span-full text-center py-20 text-slate-500"><i class="fas fa-circle-notch fa-spin text-3xl mb-4 block"></i> Loading problems...</div>';
+
+            try {
+                const response = await fetch(`/api/problems?section=${currentSection}`);
+                const data = await response.json();
+                cachedData[currentSection] = data;
+                renderProblems();
+            } catch (e) {
+                grid.innerHTML = '<div class="col-span-full text-center py-20 text-red-400">Error loading data. Ensure server is running.</div>';
+            }
+        }
+
+        function filterDifficulty(diff) {
+            currentFilter = diff;
+            renderProblems();
+        }
+
+        async function openSolution(title, filePath) {
+            try {
+                const response = await fetch(`/api/file?path=${encodeURIComponent(filePath)}`);
+                if (!response.ok) throw new Error('File not found');
+                const code = await response.text();
+
+                document.getElementById('modalTitle').innerText = title;
+                document.getElementById('modalCode').innerText = code;
+                const modal = document.getElementById('solutionModal');
+                modal.style.display = 'flex';
+            } catch (e) {
+                alert('Error loading solution: ' + e.message);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('solutionModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('solutionModal')) {
+                closeModal();
+            }
+        }
+
+        function renderProblems() {
+            const grid = document.getElementById('problems-grid');
+            grid.innerHTML = '';
+
+            const sectionData = cachedData[currentSection] || {};
+            const diffs = ['easy', 'medium', 'hard'];
+            diffs.forEach(diff => {
+                if (currentFilter !== 'all' && currentFilter !== diff) return;
+                const problems = sectionData[diff] || [];
+                problems.forEach((prob) => {
+                    const diffColor = diff === 'easy' ? 'text-green-400 bg-green-400/10 border-green-500/20' :
+                                     diff === 'medium' ? 'text-yellow-400 bg-yellow-400/10 border-yellow-500/20' : 'text-red-400 bg-red-400/10 border-red-500/20';
+
+                    const card = document.createElement('div');
+                    card.className = 'problem-card bg-slate-800/50 backdrop-blur-sm rounded-3xl border border-slate-700 p-6 flex flex-col h-full';
+
+                    card.innerHTML = `
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold text-white tracking-tight">${prob.title || 'Untitled'}</h3>
+                            <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase border ${diffColor}">${diff}</span>
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="text-[10px] font-bold uppercase text-slate-500 mb-2 tracking-widest">Description</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">${prob.description || 'No description available.'}</p>
+                        </div>
+
+                        <div class="mb-6 p-4 rounded-2xl bg-indigo-500/5 border border-indigo-500/10">
+                            <h4 class="text-[10px] font-bold uppercase text-indigo-400 mb-2 tracking-widest flex items-center gap-2">
+                                <i class="fas fa-lightbulb"></i> Hint
+                            </h4>
+                            <p class="text-slate-400 text-sm italic leading-relaxed">${prob.hint || 'No hint available.'}</p>
+                        </div>
+
+                        <div class="mb-8">
+                            <h4 class="text-[10px] font-bold uppercase text-slate-500 mb-2 tracking-widest">Sample Case</h4>
+                            <div class="bg-slate-950 p-4 rounded-2xl font-mono text-xs text-indigo-300 border border-slate-800 whitespace-pre overflow-x-auto leading-relaxed">
+                                ${prob.examples || 'No sample input available.'}
+                            </div>
+                        </div>
+
+                        <div class="mt-auto flex items-center gap-3">
+                            ${prob.leetcode ? `<a href="${prob.leetcode}" target="_blank" class="flex-1 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-all flex items-center justify-center gap-2"><i class="fab fa-leetcode"></i> LeetCode</a>` : ''}
+                            ${prob.video ? `<a href="${prob.video}" target="_blank" class="flex-1 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition-all flex items-center justify-center gap-2"><i class="fab fa-youtube"></i> Video</a>` : ''}
+                            <button onclick="openSolution('${prob.title}', \`${prob.filePath}\`)" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2">
+                                <i class="fas fa-code"></i> Solution
+                            </button>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            });
+        }
+
+        initNav();
+        showSection('string');
+    </script>
+</body>
+</html>
