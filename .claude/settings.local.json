@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($problemsDir = \"src\\\\main\\\\java\\\\org\\\\example\\\\problems\"; $outputFile = \"README.md\"; $categories = @\\(\"array\", \"backtracking\", \"binarybitmanipulation\", \"binarysearch\", \"bitmanipulation\", \"design\", \"dynamicprogramming\", \"graph\", \"greedy\", \"hashing\", \"heap\", \"interval\", \"linkedlist\", \"matrix\", \"sorting\", \"stack\", \"string\", \"tree\"\\); $levelNames = @{ \"easy\" = \"Easy\"; \"medium\" = \"Medium\"; \"hard\" = \"Hard\" }; Write-Host \"Creating README.md...\" -ForegroundColor Green;)",
+      "Bash(Get-ChildItem -Path \"src/main/java/org/example/problems\" -Filter *.java -Recurse)",
+      "Bash(Measure-Object)",
+      "Bash(Select-Object -ExpandProperty Count)",
+      "Bash(Get-ChildItem -Path \"D:\\\\inter\\\\leetcode\\\\leetcodeproblem\\\\src\\\\main\\\\java\\\\org\\\\example\\\\problems\" -Recurse -Filter \"*.java\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Sort-Object)",
+      "Bash(Get-Content \"D:\\\\inter\\\\leetcode\\\\leetcodeproblem\\\\README.md\")",
+      "Bash(Select-Object -Last 10)",
+      "Bash(powershell *)",
+      "WebSearch",
+      "Bash(Get-Content \"D:\\\\inter\\\\leetcode\\\\leetcodeproblem\\\\README.md\" -Raw)",
+      "Bash(Select-String -Pattern \"Time Based Key Value Store\" -Context 1,0)"
+    ]
+  }
+}
