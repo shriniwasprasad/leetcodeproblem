@@ -14,7 +14,7 @@ import java.util.*;
  * Input: nums = [3,2,3]
  * Output: 3
  *
- * Video Explanation: https://www.youtube.com/watch?v=u_H6y瑾u3E
+ * Video Explanation: https://www.youtube.com/watch?v=UoTI6zBIBMo
  * LeetCode Problem Link: https://leetcode.com/problems/majority-element/
  */
 public class MajorityElement {
