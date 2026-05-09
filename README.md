@@ -4,7 +4,7 @@ A comprehensive collection of LeetCode problems solved in Java, organized by cat
 
 ## Project Overview
 
-This project contains **190+ LeetCode problems** implemented in Java, covering:
+This project contains **189 LeetCode problems** implemented in Java, covering:
 - Array & Hashing
 - String Manipulation
 - Linked List
@@ -28,6 +28,30 @@ Each problem includes:
 - Solution with time/space complexity analysis
 - Video explanation (where available)
 - LeetCode problem link
+
+## Problem Count Summary
+
+| # | Section | Problems |
+|---|---------|----------|
+| 1 | Array & Hashing | 20 |
+| 2 | String | 21 |
+| 3 | Linked List | 13 |
+| 4 | Stack | 9 |
+| 5 | Sorting | 5 |
+| 6 | Tree | 24 |
+| 7 | Binary Search | 4 |
+| 8 | Backtracking | 7 |
+| 9 | Bit Manipulation | 3 |
+| 10 | Binary Bit Manipulation | 4 |
+| 11 | Design | 4 |
+| 12 | Dynamic Programming | 19 |
+| 13 | Graph | 22 |
+| 14 | Hashing | 3 |
+| 15 | Heap | 9 |
+| 16 | Interval | 7 |
+| 17 | Matrix | 10 |
+| 18 | Greedy | 5 |
+| | **Total** | **189** |
 
 ## Setup Instructions (Windows)
 
@@ -174,19 +198,228 @@ java -cp src/main/java org.example.problems.array.medium.MaximumSubarray
 
 ---
 
-## Summary Statistics
 
-| Difficulty | Count |
-|------------|-------|
-| Easy | ~65 |
-| Medium | ~100 |
-| Hard | ~25 |
-| **Total** | **190** |
 
-## Contributing
 
-Feel free to add more problems or improve existing solutions!
+### 5. Sorting
 
-## License
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Easy | [Merge Sorted Array](src/main/java/org/example/problems/sorting/easy/MergeSortedArray.java) | Given two sorted arrays, merge nums2 into nums1 in-place. | nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3 | [1,2,2,3,5,6] | O(m+n) | [LeetCode](https://leetcode.com/problems/merge-sorted-array/) \| [Video](https://www.youtube.com/watch?v=05mXJB5SLA8) |
+| 2 | Easy | [Majority Element](src/main/java/org/example/problems/sorting/easy/MajorityElement.java) | Find element appearing more than floor(n/2) times in array. | nums = [3,2,3] | 3 | O(n) | [LeetCode](https://leetcode.com/problems/majority-element/) \| [Video](https://www.youtube.com/watch?v=UoTI6zBIBMo) |
+| 3 | Medium | [Largest Number](src/main/java/org/example/problems/sorting/medium/LargestNumber.java) | Arrange numbers to form the largest possible number. | nums = [10, 2] | 210 | O(n log n) | [LeetCode](https://leetcode.com/problems/largest-number/) \| [Video](https://www.youtube.com/watch?v=q6tyGuVVbfE) |
+| 4 | Medium | [Sort List](src/main/java/org/example/problems/sorting/medium/SortList.java) | Sort a linked list in O(n log n) time using constant space. | head = [4,2,1,3] | [1,2,3,4] | O(n log n) | [LeetCode](https://leetcode.com/problems/sort-list/) \| [Video](https://www.youtube.com/watch?v=7halZ77R55o) |
+| 5 | Medium | [Sort Colors](src/main/java/org/example/problems/sorting/medium/SortColors.java) | Sort array of red/white/blue (0/1/2) in-place using Dutch National Flag. | nums = [2,0,2,1,1,0] | [0,0,1,1,2,2] | O(n) | [LeetCode](https://leetcode.com/problems/sort-colors/) \| [Video](https://www.youtube.com/watch?v=HO-qzdL_x8U) |
 
-This project is for educational purposes.
+---
+
+### 6. Tree
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Easy | [Maximum Depth of Binary Tree](src/main/java/org/example/problems/tree/easy/MaximumDepthOfBinaryTree.java) | Given the root of a binary tree, return its maximum depth. | root = [3,9,20,null,null,15,7] | 3 | O(n) | [LeetCode](https://leetcode.com/problems/maximum-depth-of-binary-tree/) |
+| 2 | Easy | [Same Tree](src/main/java/org/example/problems/tree/easy/SameTree.java) | Given two binary trees, return true if they are structurally identical. | p = [1,2,3], q = [1,2,3] | true | O(n) | [LeetCode](https://leetcode.com/problems/same-tree/) |
+| 3 | Easy | [Invert Binary Tree](src/main/java/org/example/problems/tree/easy/InvertBinaryTree.java) | Invert a binary tree (swap left and right children of all nodes). | root = [4,2,7,1,3,6,9] | [4,7,2,9,6,3,1] | O(n) | [LeetCode](https://leetcode.com/problems/invert-binary-tree/) |
+| 4 | Easy | [Symmetric Tree](src/main/java/org/example/problems/tree/easy/SymmetricTree.java) | Check if a binary tree is a mirror of itself. | root = [1,2,2,3,4,4,3] | true | O(n) | [LeetCode](https://leetcode.com/problems/symmetric-tree/) |
+| 5 | Easy | [Balanced Binary Tree](src/main/java/org/example/problems/tree/easy/BalancedBinaryTree.java) | Check if a binary tree is height-balanced. | root = [3,9,20,null,null,15,7] | true | O(n) | [LeetCode](https://leetcode.com/problems/balanced-binary-tree/) |
+| 6 | Easy | [Diameter of Binary Tree](src/main/java/org/example/problems/tree/easy/DiameterOfBinaryTree.java) | Find the diameter (longest path between any two nodes). | root = [1,2,3,4,5] | 3 | O(n) | [LeetCode](https://leetcode.com/problems/diameter-of-binary-tree/) |
+| 7 | Easy | [Subtree of Another Tree](src/main/java/org/example/problems/tree/easy/SubtreeOfAnotherTree.java) | Check if one tree is a subtree of another. | root = [3,4,5,1,2], subRoot = [4,1,2] | true | O(n) | [LeetCode](https://leetcode.com/problems/subtree-of-another-tree/) |
+| 8 | Easy | [Invert/Binary Tree](src/main/java/org/example/problems/tree/easy/InvertflipBinaryTree.java) | Invert flip a binary tree vertically. | root = [4,2,7,1,3,6,9] | [4,7,2,9,6,3,1] | O(n) | [LeetCode](https://leetcode.com/problems/invert-binary-tree/) |
+| 9 | Medium | [Binary Tree Level Order Traversal](src/main/java/org/example/problems/tree/medium/BinaryTreeLevelOrderTraversal.java) | Level order traversal of binary tree (level by level). | root = [3,9,20,null,null,15,7] | [[3],[9,20],[15,7]] | O(n) | [LeetCode](https://leetcode.com/problems/binary-tree-level-order-traversal/) |
+| 10 | Medium | [Binary Tree Right Side View](src/main/java/org/example/problems/tree/medium/BinaryTreeRightSideView.java) | Return rightmost nodes of each level. | root = [1,2,3,null,5,null,4] | [1,3,4] | O(n) | [LeetCode](https://leetcode.com/problems/binary-tree-right-side-view/) |
+| 11 | Medium | [Validate Binary Search Tree](src/main/java/org/example/problems/tree/medium/ValidateBinarySearchTree.java) | Check if a binary tree is a valid BST. | root = [2,1,3] | true | O(n) | [LeetCode](https://leetcode.com/problems/validate-binary-search-tree/) |
+| 12 | Medium | [Kth Smallest Element in BST](src/main/java/org/example/problems/tree/medium/KthSmallestElementInABst.java) | Find kth smallest element in BST. | root = [3,1,4,null,2], k = 1 | 1 | O(n) | [LeetCode](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) |
+| 13 | Medium | [Lowest Common Ancestor of BST](src/main/java/org/example/problems/tree/medium/LowestCommonAncestorOfABinarySearchTree.java) | Find LCA in a BST. | root = [6,2,8,0,4,7,9], p = 2, q = 8 | 6 | O(n) | [LeetCode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) |
+| 14 | Medium | [Binary Tree Zigzag Level Order Traversal](src/main/java/org/example/problems/tree/medium/BinaryTreeZigzagLevelOrderTraversal.java) | Zigzag level order traversal. | root = [3,9,20,null,null,15,7] | [[3],[20,9],[15,7]] | O(n) | [LeetCode](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) |
+| 15 | Medium | [Construct Binary Tree from Preorder and Inorder Traversal](src/main/java/org/example/problems/tree/medium/ConstructBinaryTreeFromPreorderAndInorderTraversal.java) | Build tree from preorder and inorder. | preorder = [3,9,20,15,7], inorder = [9,3,15,20,7] | [3,9,20,null,null,15,7] | O(n) | [LeetCode](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) |
+| 16 | Medium | [Count Good Nodes in Binary Tree](src/main/java/org/example/problems/tree/medium/CountGoodNodesInBinaryTree.java) | Count nodes with value >= path max. | root = [1,null,2,3,4,5,null] | 4 | O(n) | [LeetCode](https://leetcode.com/problems/count-good-nodes-in-binary-tree/) |
+| 17 | Medium | [Lowest Common Ancestor of Binary Tree](src/main/java/org/example/problems/tree/medium/LowestCommonAncestorOfBst.java) | Find LCA in binary tree. | root = [3,5,1,6,2,0,8], p = 5, q = 1 | 3 | O(n) | [LeetCode](https://leetcode.com/problems/lowest-common-ancestor-of-bst/) |
+| 18 | Medium | [Find Leaves of Binary Tree](src/main/java/org/example/problems/tree/medium/FindLeavesOfBinaryTree.java) | Remove all leaves and return them level by level. | root = [1,2,3,4,5] | [[4,5,3],[2],[1]] | O(n) | [LeetCode](https://leetcode.com/problems/find-leaves-of-binary-tree/) |
+| 19 | Medium | [Implement Trie (Prefix Tree)](src/main/java/org/example/problems/tree/medium/ImplementTriePrefixTree.java) | Implement a Trie with insert, search, startsWith. | See problem description | See problem description | O(m) | [LeetCode](https://leetcode.com/problems/implement-trie-(prefix-tree)/) |
+| 20 | Medium | [Add and Search Word](src/main/java/org/example/problems/tree/medium/AddAndSearchWord.java) | Design a data structure for word search. | See problem description | See problem description | O(n) | [LeetCode](https://leetcode.com/problems/add-and-search-word/) |
+| 21 | Medium | [Design Add and Search Words Data Structure](src/main/java/org/example/problems/tree/medium/DesignAddAndSearchWordsDataStructure.java) | Design word dictionary with wildcard search. | See problem description | See problem description | O(n) | [LeetCode](https://leetcode.com/problems/design-add-and-search-words-data-structure/) |
+| 22 | Hard | [Binary Tree Maximum Path Sum](src/main/java/org/example/problems/tree/hard/BinaryTreeMaximumPathSum.java) | Find maximum path sum in a binary tree. | root = [-10,9,20,null,null,15,7] | 42 | O(n) | [LeetCode](https://leetcode.com/problems/binary-tree-maximum-path-sum/) |
+| 23 | Hard | [Serialize and Deserialize Binary Tree](src/main/java/org/example/problems/tree/hard/SerializeAndDeserializeBinaryTree.java) | Encode and decode a binary tree. | root = [1,2,3,null,null,4,5] | [1,2,3,null,null,4,5] | O(n) | [LeetCode](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/) |
+| 24 | Hard | [Word Search II](src/main/java/org/example/problems/tree/hard/WordSearchIi.java) | Find all words in board from dictionary. | board = [["o","a","a","n"],["e","t","a","e"]], words = ["eat","oath"] | ["eat","oath"] | O(n * m * 4^l) | [LeetCode](https://leetcode.com/problems/word-search-ii/) |
+
+---
+
+### 7. Binary Search
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Easy | [Binary Search](src/main/java/org/example/problems/binarysearch/easy/BinarySearch.java) | Given sorted array and target, return index if found, else -1. O(log n) required. | nums = [-1,0,3,5,9,12], target = 9 | 4 | O(log n) | [LeetCode](https://leetcode.com/problems/binary-search/) \| [Video](https://www.youtube.com/watch?v=t3yPHFyKxr4) |
+| 2 | Medium | [Koko Eating Bananas](src/main/java/org/example/problems/binarysearch/medium/KokoEatingBananas.java) | Find minimum eating speed k so Koko can eat all bananas within h hours. | piles = [3,6,7,11], h = 8 | 4 | O(n log maxPile) | [LeetCode](https://leetcode.com/problems/koko-eating-bananas/) \| [Video](https://www.youtube.com/watch?v=3m3QZeiH3KI) |
+| 3 | Medium | [Search a 2D Matrix](src/main/java/org/example/problems/binarysearch/medium/SearchA2dMatrix.java) | Search for target in m x n matrix with sorted rows and columns. | matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3 | true | O(log(m*n)) | [LeetCode](https://leetcode.com/problems/search-a-2d-matrix/) \| [Video](https://www.youtube.com/watch?v=dP4cb8zbohY) |
+---
+
+### 8. Backtracking
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Medium | [Subsets](src/main/java/org/example/problems/backtracking/medium/Subsets.java) | Generate all possible subsets of a set. | nums = [1,2,3] | [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]] | O(n * 2^n) | [LeetCode](https://leetcode.com/problems/subsets/) |
+| 2 | Medium | [Subsets II](src/main/java/org/example/problems/backtracking/medium/SubsetsIi.java) | Generate all possible subsets with duplicates. | nums = [1,2,2] | [[],[1],[2],[1,2],[2,2],[1,2,2]] | O(n * 2^n) | [LeetCode](https://leetcode.com/problems/subsets-ii/) |
+| 3 | Medium | [Permutations](src/main/java/org/example/problems/backtracking/medium/Permutations.java) | Generate all permutations of an array. | nums = [1,2,3] | [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] | O(n!) | [LeetCode](https://leetcode.com/problems/permutations/) |
+| 4 | Medium | [Combination Sum II](src/main/java/org/example/problems/backtracking/medium/CombinationSumIi.java) | Find all combinations that sum to target. | candidates = [2,3,6,7], target = 7 | [[2,2,3],[7]] | O(n * 2^n) | [LeetCode](https://leetcode.com/problems/combination-sum-ii/) |
+| 5 | Medium | [Palindrome Partitioning](src/main/java/org/example/problems/backtracking/medium/PalindromePartitioning.java) | Partition string into palindromic substrings. | s = "aab" | [["a","a","b"],["aa","b"]] | O(n * 2^n) | [LeetCode](https://leetcode.com/problems/palindrome-partitioning/) |
+| 6 | Medium | [Word Search](src/main/java/org/example/problems/backtracking/medium/WordSearch.java) | Find if word exists in grid. | board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED" | true | O(n * 4^l) | [LeetCode](https://leetcode.com/problems/word-search/) |
+| 7 | Hard | [N-Queens](src/main/java/org/example/problems/backtracking/hard/NQueens.java) | Solve N-Queens problem. | n = 4 | [[" .Q..","...Q","Q...","..Q."],["..Q.",".Q..","...Q","Q..."]] | O(n!) | [LeetCode](https://leetcode.com/problems/n-queens/) |
+
+---
+
+### 9. Bit Manipulation
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Easy | [Single Number](src/main/java/org/example/problems/bitmanipulation/easy/SingleNumber.java) | Find element that appears once while others appear twice. | nums = [2,2,1] | 1 | O(n) | [LeetCode](https://leetcode.com/problems/single-number/) |
+| 2 | Easy | [Number of 1 Bits](src/main/java/org/example/problems/bitmanipulation/easy/NumberOf1Bits.java) | Count the number of 1-bits in an integer. | n = 11 | 3 | O(1) | [LeetCode](https://leetcode.com/problems/number-of-1-bits/) |
+| 3 | Medium | [Reverse Integer](src/main/java/org/example/problems/bitmanipulation/medium/ReverseInteger.java) | Reverse digits of an integer. | x = 123 | 321 | O(log x) | [LeetCode](https://leetcode.com/problems/reverse-integer/) |
+
+---
+
+### 10. Binary Bit Manipulation
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Easy | [Counting Bits](src/main/java/org/example/problems/binarybitmanipulation/easy/CountingBits.java) | Return array of number of 1-bits for each number. | n = 5 | [0,1,1,2,1,2] | O(n) | [LeetCode](https://leetcode.com/problems/counting-bits/) |
+| 2 | Easy | [Reverse Bits](src/main/java/org/example/problems/binarybitmanipulation/easy/ReverseBits.java) | Reverse bits of a 32-bit integer. | n = 0b00000010100101000001111000111100 | 0b00111100111010100101000000101000 | O(1) | [LeetCode](https://leetcode.com/problems/reverse-bits/) |
+| 3 | Easy | [Missing Number](src/main/java/org/example/problems/binarybitmanipulation/easy/MissingNumber.java) | Find missing number from 0 to n. | nums = [3,0,1] | 2 | O(n) | [LeetCode](https://leetcode.com/problems/missing-number/) |
+| 4 | Medium | [Sum of Two Integers](src/main/java/org/example/problems/binarybitmanipulation/medium/SumOfTwoIntegers.java) | Calculate sum without using + or -. | a = 1, b = 2 | 3 | O(1) | [LeetCode](https://leetcode.com/problems/sum-of-two-integers/) |
+
+---
+
+### 11. Design
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Easy | [Logger Rate Limiter](src/main/java/org/example/problems/design/easy/LoggerRateLimiter.java) | Design a logger system that prevents duplicate messages within a time period. | See problem description | See problem description | O(1) | [LeetCode](https://leetcode.com/problems/logger-rate-limiter/) |
+| 2 | Easy | [Moving Average from Data Stream](src/main/java/org/example/problems/design/easy/MovingAverageFromDataStream.java) | Calculate moving average of stream of integers. | See problem description | See problem description | O(1) | [LeetCode](https://leetcode.com/problems/moving-average-from-data-stream/) |
+| 3 | Medium | [Insert Delete GetRandom O(1)](src/main/java/org/example/problems/design/medium/InsertDeleteGetrandomO1.java) | Design data structure with insert, delete, getRandom in O(1). | See problem description | See problem description | O(1) | [LeetCode](https://leetcode.com/problems/insert-delete-getrandom-o1/) |
+| 4 | Medium | [Design Tic Tac Toe](src/main/java/org/example/problems/design/medium/DesignTictactoe.java) | Design Tic-Tac-Toe game. | See problem description | See problem description | O(1) | [LeetCode](https://leetcode.com/problems/design-tic-tac-toe/) |
+
+---
+
+### 12. Dynamic Programming
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Easy | [Climbing Stairs](src/main/java/org/example/problems/dynamicprogramming/easy/ClimbingStairs.java) | Count ways to climb n stairs (1 or 2 steps at a time). | n = 3 | 3 | O(n) | [LeetCode](https://leetcode.com/problems/climbing-stairs/) |
+| 2 | Easy | [Min Cost Climbing Stairs](src/main/java/org/example/problems/dynamicprogramming/easy/MinCostClimbingStairs.java) | Find min cost to reach top. | cost = [1,100,1,1,1,100,1,1,100,1] | 6 | O(n) | [LeetCode](https://leetcode.com/problems/min-cost-climbing-stairs/) |
+| 3 | Easy | [Pascal's Triangle](src/main/java/org/example/problems/dynamicprogramming/easy/PascalsTriangle.java) | Generate Pascal's triangle. | numRows = 5 | [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]] | O(n^2) | [LeetCode](https://leetcode.com/problems/pascals-triangle/) |
+| 4 | Medium | [Unique Paths](src/main/java/org/example/problems/dynamicprogramming/medium/UniquePaths.java) | Count unique paths from top-left to bottom-right. | m = 3, n = 7 | 28 | O(m*n) | [LeetCode](https://leetcode.com/problems/unique-paths/) |
+| 5 | Medium | [Longest Common Subsequence](src/main/java/org/example/problems/dynamicprogramming/medium/LongestCommonSubsequence.java) | Find LCS length of two strings. | text1 = "abcde", text2 = "ace" | 3 | O(m*n) | [LeetCode](https://leetcode.com/problems/longest-common-subsequence/) |
+| 6 | Medium | [Word Break](src/main/java/org/example/problems/dynamicprogramming/medium/WordBreakProblem.java) | Check if string can be segmented into dictionary words. | s = "leetcode", dict = ["leet","code"] | true | O(n^2) | [LeetCode](https://leetcode.com/problems/word-break/) |
+| 7 | Medium | [Jump Game](src/main/java/org/example/problems/dynamicprogramming/medium/JumpGame.java) | Check if can reach last index. | nums = [2,3,1,1,4] | true | O(n) | [LeetCode](https://leetcode.com/problems/jump-game/) |
+| 8 | Medium | [Jump Game II](src/main/java/org/example/problems/dynamicprogramming/medium/JumpGameIi.java) | Find minimum jumps to reach last index. | nums = [2,3,1,1,4] | 2 | O(n) | [LeetCode](https://leetcode.com/problems/jump-game-ii/) |
+| 9 | Medium | [Combination Sum IV](src/main/java/org/example/problems/dynamicprogramming/medium/CombinationSum.java) | Count number of combinations that sum to target. | nums = [1,2,3], target = 4 | 7 | O(n*target) | [LeetCode](https://leetcode.com/problems/combination-sum/) |
+| 10 | Medium | [House Robber](src/main/java/org/example/problems/dynamicprogramming/medium/BestTimeToBuyAndSellStockWithCooldown.java) | Max money to rob without robbing adjacent houses. | nums = [1,2,3,1] | 4 | O(n) | [LeetCode](https://leetcode.com/problems/house-robber/) |
+| 11 | Medium | [Partition Equal Subset Sum](src/main/java/org/example/problems/dynamicprogramming/medium/PartitionEqualSubsetSum.java) | Check if array can be partitioned into two subsets with equal sum. | nums = [1,5,11,5] | true | O(n*sum) | [LeetCode](https://leetcode.com/problems/partition-equal-subset-sum/) |
+| 12 | Medium | [Coin Change II](src/main/java/org/example/problems/dynamicprogramming/medium/CoinChangeIi.java) | Find number of ways to make amount with coins. | coins = [1,2,5], amount = 5 | 4 | O(n*amount) | [LeetCode](https://leetcode.com/problems/coin-change-ii/) |
+| 13 | Medium | [Edit Distance](src/main/java/org/example/problems/dynamicprogramming/medium/EditDistance.java) | Find min edits to convert word1 to word2. | word1 = "horse", word2 = "ros" | 3 | O(m*n) | [LeetCode](https://leetcode.com/problems/edit-distance/) |
+| 14 | Medium | [Target Sum](src/main/java/org/example/problems/dynamicprogramming/medium/TargetSum.java) | Find number of ways to reach target using +/- signs. | nums = [1,1,1,1,1], target = 3 | 5 | O(n*sum) | [LeetCode](https://leetcode.com/problems/target-sum/) |
+| 15 | Medium | [Interleaving String](src/main/java/org/example/problems/dynamicprogramming/medium/InterleavingString.java) | Check if s3 is interleaving of s1 and s2. | s1 = "aab", s2 = "axy", s3 = "aaxaby" | true | O(m*n) | [LeetCode](https://leetcode.com/problems/interleaving-string/) |
+| 16 | Hard | [Regular Expression Matching](src/main/java/org/example/problems/dynamicprogramming/hard/RegularExpressionMatching.java) | Implement regex matching with '.' and '*'. | s = "aa", p = "a*" | true | O(m*n) | [LeetCode](https://leetcode.com/problems/regular-expression-matching/) |
+| 17 | Hard | [Distinct Subsequences](src/main/java/org/example/problems/dynamicprogramming/hard/DistinctSubsequences.java) | Count distinct subsequences of s equal to t. | s = "rabbbit", t = "rabbit" | 3 | O(m*n) | [LeetCode](https://leetcode.com/problems/distinct-subsequences/) |
+| 18 | Hard | [Burst Balloons](src/main/java/org/example/problems/dynamicprogramming/hard/BurstBalloons.java) | Max coins by bursting balloons. | nums = [3,1,5,8] | 167 | O(n^3) | [LeetCode](https://leetcode.com/problems/burst-balloons/) |
+| 19 | Hard | [Race Car](src/main/java/org/example/problems/dynamicprogramming/hard/RaceCar.java) | Min time to reach target using accelerate/reverse. | target = 6 | 2 | O(n log n) | [LeetCode](https://leetcode.com/problems/race-car/) |
+
+---
+
+### 13. Graph
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Medium | [Number of Islands](src/main/java/org/example/problems/graph/medium/NumberOfIslands.java) | Count number of islands in a grid. | grid = [["1","1","1"],["0","1","0"],["1","1","1"]] | 1 | O(m*n) | [LeetCode](https://leetcode.com/problems/number-of-islands/) |
+| 2 | Medium | [Max Area of Island](src/main/java/org/example/problems/graph/medium/MaxAreaOfIsland.java) | Find max area of an island. | grid = [[0,0,1,0,0],[0,1,1,0,0],[0,0,0,0,0]] | 5 | O(m*n) | [LeetCode](https://leetcode.com/problems/max-area-of-island/) |
+| 3 | Medium | [Rotting Oranges](src/main/java/org/example/problems/graph/medium/RottingOranges.java) | Find min time for all oranges to rot. | grid = [[2,1,1],[1,1,0],[0,1,1]] | 4 | O(m*n) | [LeetCode](https://leetcode.com/problems/rotting-oranges/) |
+| 4 | Medium | [Walls and Gates](src/main/java/org/example/problems/graph/medium/WallsAndGates.java) | Fill empty rooms with distance to nearest gate. | rooms = [[2147483647,-1,0,2147483647],[2147483647,2147483647,2147483647,-1],[2147483647,-1,2147483647,-1],[0,-1,2147483647,2147483647]] | [[3,-1,0,1],[2,2,1,-1],[1,-1,2,-1],[0,-1,3,4]] | O(m*n) | [LeetCode](https://leetcode.com/problems/walls-and-gates/) |
+| 5 | Medium | [Surrounded Regions](src/main/java/org/example/problems/graph/medium/SurroundedRegions.java) | Capture surrounded regions. | board = [["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]] | [["X","X","X","X"],["X","X","X","X"],["X","X","X","X"],["X","O","X","X"]] | O(m*n) | [LeetCode](https://leetcode.com/problems/surrounded-regions/) |
+| 6 | Medium | [Redundant Connection](src/main/java/org/example/problems/graph/medium/RedundantConnection.java) | Find edge that creates a cycle. | edges = [[1,2],[2,3],[3,4],[1,4],[1,5]] | [1,4] | O(n) | [LeetCode](https://leetcode.com/problems/redundant-connection/) |
+| 7 | Hard | [Word Ladder](src/main/java/org/example/problems/graph/hard/WordLadder.java) | Find min transformation steps. | beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log","cog"] | 5 | O(n * m) | [LeetCode](https://leetcode.com/problems/word-ladder/) |
+| 8 | Medium | [Clone Graph](src/main/java/org/example/problems/graph/medium/CloneGraph.java) | Clone an undirected graph. | See problem description | See problem description | O(V+E) | [LeetCode](https://leetcode.com/problems/clone-graph/) |
+| 9 | Medium | [Course Schedule](src/main/java/org/example/problems/graph/medium/CourseSchedule.java) | Check if all courses can be completed. | numCourses = 2, prerequisites = [[1,0]] | true | O(V+E) | [LeetCode](https://leetcode.com/problems/course-schedule/) |
+| 10 | Medium | [Course Schedule II](src/main/java/org/example/problems/graph/medium/CourseScheduleIi.java) | Find order to complete courses. | numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]] | [0,2,1,3] | O(V+E) | [LeetCode](https://leetcode.com/problems/course-schedule-ii/) |
+| 11 | Medium | [Longest Consecutive Sequence](src/main/java/org/example/problems/graph/medium/LongestConsecutiveSequence.java) | Find longest consecutive sequence. | nums = [100,4,200,1,3,2] | 4 | O(n) | [LeetCode](https://leetcode.com/problems/longest-consecutive-sequence/) |
+| 12 | Medium | [Pacific Atlantic Water Flow](src/main/java/org/example/problems/graph/medium/PacificAtlanticWaterFlow.java) | Find cells that can flow to both oceans. | matrix = [[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,3,1,2,4]] | [[0,4],[1,3],[1,4],[2,2],[3,0],[3,1],[4,0]] | O(m*n) | [LeetCode](https://leetcode.com/problems/pacific-atlantic-water-flow/) |
+| 13 | Medium | [Number of Provinces](src/main/java/org/example/problems/graph/medium/NumberOfProvinces.java) | Find number of connected components. | isConnected = [[1,1,0],[1,1,0],[0,0,1]] | 2 | O(n^2) | [LeetCode](https://leetcode.com/problems/number-of-provinces/) |
+| 14 | Medium | [Number of Connected Components in Undirected Graph](src/main/java/org/example/problems/graph/medium/NumberOfConnectedComponentsInAnUndirectedGraph.java) | Count connected components. | n = 5, edges = [[0,1],[1,2],[2,0],[3,4]] | 2 | O(V+E) | [LeetCode](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/) |
+| 15 | Medium | [Graph Valid Tree](src/main/java/org/example/problems/graph/medium/GraphValidTree.java) | Check if graph is a valid tree. | n = 5, edges = [[0,1],[0,2],[0,3],[1,4]] | true | O(V+E) | [LeetCode](https://leetcode.com/problems/valid-graph-tree/) |
+| 16 | Medium | [Find the Celebrity](src/main/java/org/example/problems/graph/medium/FindTheCelebrity.java) | Find the celebrity who knows no one but everyone knows. | n = 3 | 0 | O(n) | [LeetCode](https://leetcode.com/problems/find-the-celebrity/) |
+| 17 | Medium | [Network Delay Time](src/main/java/org/example/problems/graph/medium/NetworkDelayTime.java) | Find time for signal to reach all nodes. | times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2 | 2 | O(E log V) | [LeetCode](https://leetcode.com/problems/network-delay-time/) |
+| 18 | Medium | [Cheapest Flights Within K Stops](src/main/java/org/example/problems/graph/medium/CheapestFlightsWithinKStops.java) | Find cheapest flight with at most k stops. | flights = [[0,1,100],[1,2,100],[2,0,100]], src = 0, dst = 2, k = 1 | 200 | O(E * K) | [LeetCode](https://leetcode.com/problems/cheapest-flights-within-k-stops/) |
+| 19 | Medium | [Min Cost to Connect All Points](src/main/java/org/example/problems/graph/medium/MinCostToConnectAllPoints.java) | Find min cost to connect all points. | points = [[0,0],[2,2],[3,10],[5,2],[7,0]] | 20 | O(V^2) | [LeetCode](https://leetcode.com/problems/minimum-cost-to-connect-all-points/) |
+| 20 | Hard | [Alien Dictionary](src/main/java/org/example/problems/graph/hard/AlienDictionary.java) | Find alien language order. | dictionary = ["wrt","wrf","er","ett","rftt"] | "wertf" | O(V+E) | [LeetCode](https://leetcode.com/problems/alien-dictionary/) |
+| 21 | Hard | [Reconstruct Itinerary](src/main/java/org/example/problems/graph/hard/ReconstructItinerary.java) | Reconstruct itinerary. | tickets = [["JFK","SFO"],["JFK","ATL"],["ATL","JFK"]] | ["JFK","ATL","JFK","SFO"] | O(E log E) | [LeetCode](https://leetcode.com/problems/reconstruct-itinerary/) |
+| 22 | Hard | [Swim in Rising Water](src/main/java/org/example/problems/graph/hard/SwimInRisingWater.java) | Find min time to swim across. | grid = [[3,2],[0,1]] | 3 | O(n^2 log n) | [LeetCode](https://leetcode.com/problems/swim-in-rising-water/) |
+
+---
+
+### 14. Hashing
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Easy | [Valid Sudoku](src/main/java/org/example/problems/array/medium/ValidSudoku.java) | Determine if a 9x9 Sudoku board is valid. | board = [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]] | false | O(1) | [LeetCode](https://leetcode.com/problems/valid-sudoku/) |
+| 2 | Easy | [Roman to Integer](src/main/java/org/example/problems/hashing/easy/RomanToInteger.java) | Convert Roman numeral to integer. | s = "III" | 3 | O(n) | [LeetCode](https://leetcode.com/problems/roman-to-integer/) |
+| 3 | Hard | [First Missing Positive](src/main/java/org/example/problems/hashing/hard/FirstMissingPositive.java) | Find the smallest missing positive integer. | nums = [3,4,-1,1] | 2 | O(n) | [LeetCode](https://leetcode.com/problems/first-missing-positive/) |
+
+---
+
+### 15. Heap
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Medium | [Top K Frequent Elements](src/main/java/org/example/problems/array/medium/TopKFrequentElements.java) | Return k most frequent elements. | nums = [1,1,1,2,2,3], k = 2 | [1,2] | O(n log k) | [LeetCode](https://leetcode.com/problems/top-k-frequent-elements/) |
+| 2 | Easy | [Kth Largest Element in a Stream](src/main/java/org/example/problems/heap/easy/KthLargestElementInAStream.java) | Design a stream to find kth largest element. | nums = [4,5,8,2], k = 4 | 4 | O(n log k) | [LeetCode](https://leetcode.com/problems/kth-largest-element-in-a-stream/) |
+| 3 | Easy | [Last Stone Weight](src/main/java/org/example/problems/heap/easy/LastStoneWeight.java) | Simulate smashing stones. | stones = [2,7,4,1,8,1] | 1 | O(n log n) | [LeetCode](https://leetcode.com/problems/last-stone-weight/) |
+| 4 | Easy | [High Five](src/main/java/org/example/problems/heap/easy/HighFive.java) | Get top 5 scores for each student. | See problem description | See problem description | O(n log k) | [LeetCode](https://leetcode.com/problems/high-five/) |
+| 5 | Medium | [Kth Largest Element in an Array](src/main/java/org/example/problems/heap/medium/KthLargestElementInAnArray.java) | Find kth largest element in array. | nums = [3,2,1,5,6,4], k = 2 | 5 | O(n log k) | [LeetCode](https://leetcode.com/problems/kth-largest-element-in-an-array/) |
+| 6 | Medium | [K Closest Points to Origin](src/main/java/org/example/problems/heap/medium/KClosestPointsToOrigin.java) | Find k closest points to origin. | points = [[1,3],[-2,2]], k = 1 | [[-2,2]] | O(n log k) | [LeetCode](https://leetcode.com/problems/k-closest-points-to-origin/) |
+| 7 | Medium | [Design Twitter](src/main/java/org/example/problems/heap/medium/DesignTwitter.java) | Design a Twitter feed. | See problem description | See problem description | O(log k) | [LeetCode](https://leetcode.com/problems/design-twitter/) |
+| 8 | Medium | [Task Scheduler](src/main/java/org/example/problems/heap/medium/TaskScheduler.java) | Find min time to finish tasks. | tasks = ["A","A","A","B","B","B"], n = 2 | 8 | O(n) | [LeetCode](https://leetcode.com/problems/task-scheduler/) |
+| 9 | Hard | [Find Median from Data Stream](src/main/java/org/example/problems/heap/hard/FindMedianFromDataStream.java) | Find median from data stream. | See problem description | See problem description | O(log n) | [LeetCode](https://leetcode.com/problems/find-median-from-data-stream/) |
+
+---
+
+### 16. Interval
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Easy | [Meeting Rooms](src/main/java/org/example/problems/interval/easy/MeetingRooms.java) | Check if person can attend all meetings. | intervals = [[0,30],[5,10],[15,20]] | false | O(n log n) | [LeetCode](https://leetcode.com/problems/meeting-rooms/) |
+| 2 | Medium | [Merge Intervals](src/main/java/org/example/problems/interval/medium/MergeIntervals.java) | Merge all overlapping intervals. | intervals = [[1,3],[2,6],[8,10],[15,18]] | [[1,6],[8,10],[15,18]] | O(n log n) | [LeetCode](https://leetcode.com/problems/merge-intervals/) |
+| 3 | Medium | [Insert Interval](src/main/java/org/example/problems/interval/medium/InsertInterval.java) | Insert new interval and merge. | intervals = [[1,3],[6,9]], newInterval = [2,5] | [[1,5],[6,9]] | O(n) | [LeetCode](https://leetcode.com/problems/insert-interval/) |
+| 4 | Medium | [Non-overlapping Intervals](src/main/java/org/example/problems/interval/medium/NonoverlappingIntervals.java) | Remove minimum intervals to avoid overlap. | intervals = [[1,2],[2,3],[3,4],[1,3]] | 1 | O(n log n) | [LeetCode](https://leetcode.com/problems/non-overlapping-intervals/) |
+| 5 | Medium | [Meeting Rooms II](src/main/java/org/example/problems/interval/medium/MeetingRoomsIi.java) | Find min number of meeting rooms needed. | intervals = [[0,30],[5,10],[15,20]] | 2 | O(n log n) | [LeetCode](https://leetcode.com/problems/meeting-rooms-ii/) |
+| 6 | Medium | [Remove Interval](src/main/java/org/example/problems/interval/medium/RemoveInterval.java) | Remove intervals from list. | intervals = [[1,2],[3,4],[5,6]], toRemove = [2,5] | [[1,2],[5,6]] | O(n) | [LeetCode](https://leetcode.com/problems/remove-interval/) |
+| 7 | Hard | [Minimum Interval to Include Each Query](src/main/java/org/example/problems/interval/hard/MinimumIntervalToIncludeEachQuery.java) | Find min interval for each query. | intervals = [[1,4],[2,4],[3,4]], queries = [2,3,4] | [2,3,4] | O(n log n) | [LeetCode](https://leetcode.com/problems/minimum-interval-to-include-each-query/) |
+
+---
+
+### 17. Matrix
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Medium | [Search a 2D Matrix](src/main/java/org/example/problems/binarysearch/medium/SearchA2dMatrix.java) | Search for target in m x n matrix with sorted rows and columns. | matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3 | true | O(log(m*n)) | [LeetCode](https://leetcode.com/problems/search-a-2d-matrix/) |
+| 2 | Easy | [Plus One](src/main/java/org/example/problems/matrix/easy/PlusOne.java) | Add one to a number represented by array. | digits = [1,2,3] | [1,2,4] | O(n) | [LeetCode](https://leetcode.com/problems/plus-one/) |
+| 3 | Easy | [Happy Number](src/main/java/org/example/problems/matrix/easy/HappyNumber.java) | Determine if a number is happy. | n = 19 | true | O(log n) | [LeetCode](https://leetcode.com/problems/happy-number/) |
+| 4 | Medium | [Game of Life](src/main/java/org/example/problems/matrix/medium/GameOfLife.java) | Simulate the Game of Life. | board = [[0,1],[1,1]] | [[0,0],[1,1]] | O(m*n) | [LeetCode](https://leetcode.com/problems/game-of-life/) |
+| 5 | Medium | [Pow(x, n)](src/main/java/org/example/problems/matrix/medium/PowxN.java) | Implement pow(x, n). | x = 2.0, n = 10 | 1024.0 | O(log n) | [LeetCode](https://leetcode.com/problems/powx-n/) |
+| 6 | Medium | [Multiply Strings](src/main/java/org/example/problems/matrix/medium/MultiplyStrings.java) | Multiply two strings. | num1 = "2", num2 = "3" | "6" | O(m*n) | [LeetCode](https://leetcode.com/problems/multiply-strings/) |
+| 7 | Medium | [Detect Squares](src/main/java/org/example/problems/matrix/medium/DetectSquares.java) | Count points forming a square. | See problem description | See problem description | O(1) | [LeetCode](https://leetcode.com/problems/detect-squares/) |
+| 8 | Hard | [Longest Increasing Path in a Matrix](src/main/java/org/example/problems/matrix/hard/LongestIncreasingPathInAMatrix.java) | Find longest increasing path in matrix. | matrix = [[9,9,4],[6,6,8],[0,1,1]] | 4 | O(m*n) | [LeetCode](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/) |
+| 9 | Medium | [Spiral Matrix](src/main/java/org/example/problems/matrix/medium/SpiralMatrix.java) | Return elements in spiral order. | matrix = [[1,2,3],[4,5,6],[7,8,9]] | [1,2,3,6,9,8,7,4,5] | O(m*n) | [LeetCode](https://leetcode.com/problems/spiral-matrix/) |
+| 10 | Medium | [Rotate Image](src/main/java/org/example/problems/matrix/medium/RotateImage.java) | Rotate matrix 90 degrees clockwise. | matrix = [[1,2,3],[4,5,6],[7,8,9]] | [[7,4,1],[8,5,2],[9,6,3]] | O(m*n) | [LeetCode](https://leetcode.com/problems/rotate-image/) |
+
+---
+
+### 18. Greedy
+
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Medium | [Gas Station](src/main/java/org/example/problems/greedy/medium/GasStation.java) | Find starting station with enough gas. | gas = [1,2,3,4,5], cost = [2,3,4,5,1] | 0 | O(n) | [LeetCode](https://leetcode.com/problems/gas-station/) |
+| 2 | Medium | [Partition Labels](src/main/java/org/example/problems/greedy/medium/PartitionLabels.java) | Partition string into as many parts as possible. | s = "ababcbacadefegdehijhklij" | [9,7,8] | O(n) | [LeetCode](https://leetcode.com/problems/partition-labels/) |
+| 3 | Medium | [Hand of Straights](src/main/java/org/example/problems/greedy/medium/HandOfStraights.java) | Check if can group cards into consecutive groups. | hand = [1,2,3,6,2,3,4,7,8], groupSize = 3 | true | O(n log n) | [LeetCode](https://leetcode.com/problems/hand-of-straights/) |
+| 4 | Medium | [Merge Triplets to Form Target Triplet](src/main/java/org/example/problems/greedy/medium/MergeTripletsToFormTargetTriplet.java) | Check if can form target from triplets. | triplets = [[2,5,3],[1,8,0],[1,2,5],[2,7,5]], target = [1,2,5] | true | O(n) | [LeetCode](https://leetcode.com/problems/merge-triplets-to-form-target-trips/) |
+| 5 | Medium | [Valid Parenthesis String](src/main/java/org/example/problems/greedy/medium/ValidParenthesisString.java) | Check if string with '(' and '*' is valid. | s = "(*))" | true | O(n) | [LeetCode](https://leetcode.com/problems/valid-parenthesis-string/) |
+
+---
+
