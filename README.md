@@ -140,175 +140,37 @@ java -cp src/main/java org.example.problems.array.medium.MaximumSubarray
 
 ### 3. Linked List
 
-#### Easy
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Detect Cycle in a Linked List](src/main/java/org/example/problems/linkedlist/easy/DetectCycleInALinkedList.java) | O(n) | [Link](https://leetcode.com/problems/linked-list-cycle/) | |
-| 2 | [LinkedList Cycle](src/main/java/org/example/problems/linkedlist/easy/LinkedListCycle.java) | O(n) | [Link](https://leetcode.com/problems/linked-list-cycle/) | |
-| 3 | [Merge Two Sorted Lists](src/main/java/org/example/problems/linkedlist/easy/MergeTwoSortedLists.java) | O(n+m) | [Link](https://leetcode.com/problems/merge-two-sorted-lists/) | |
-| 4 | [Middle of the Linked List](src/main/java/org/example/problems/linkedlist/easy/MiddleOfTheLinkedlist.java) | O(n) | [Link](https://leetcode.com/problems/middle-of-the-linked-list/) | |
-| 5 | [Reverse A Linked List](src/main/java/org/example/problems/linkedlist/easy/ReverseALinkedList.java) | O(n) | [Link](https://leetcode.com/problems/reverse-linked-list/) | |
-| 6 | [Reverse Linked List](src/main/java/org/example/problems/linkedlist/easy/ReverseLinkedList.java) | O(n) | [Link](https://leetcode.com/problems/reverse-linked-list/) | [Video](https://www.youtube.com/watch?v=FHhItaCZ2pE) |
-
-#### Medium
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Add Two Numbers](src/main/java/org/example/problems/linkedlist/medium/AddTwoNumbers.java) | O(max(m,n)) | [Link](https://leetcode.com/problems/add-two-numbers/) | |
-| 2 | [Copy List with Random Pointer](src/main/java/org/example/problems/linkedlist/medium/CopyListWithRandomPointer.java) | O(n) | [Link](https://leetcode.com/problems/copy-list-with-random-pointer/) | |
-| 3 | [LRU Cache](src/main/java/org/example/problems/linkedlist/medium/LruCache.java) | O(1) | [Link](https://leetcode.com/problems/lru-cache/) | |
-| 4 | [Remove Nth Node From End of List](src/main/java/org/example/problems/linkedlist/medium/RemoveNthNodeFromEndOfList.java) | O(n) | [Link](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) | |
-| 5 | [Reorder List](src/main/java/org/example/problems/linkedlist/medium/ReorderList.java) | O(n) | [Link](https://leetcode.com/problems/reorder-list/) | |
-
-#### Hard
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Merge K Sorted Lists](src/main/java/org/example/problems/linkedlist/hard/MergeKSortedLists.java) | O(n log k) | [Link](https://leetcode.com/problems/merge-k-sorted-lists/) | |
-| 2 | [Reverse Nodes in K-Group](src/main/java/org/example/problems/linkedlist/hard/ReverseNodesInKGroup.java) | O(n) | [Link](https://leetcode.com/problems/reverse-nodes-in-k-group/) | |
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Easy | [Detect Cycle in a Linked List](src/main/java/org/example/problems/linkedlist/easy/DetectCycleInALinkedList.java) | Given head of linked list, determine if it has a cycle (node reachable by following next pointer continuously). | head = [3,2,0,-4], pos = 1 | true | O(n) | [LeetCode](https://leetcode.com/problems/linked-list-cycle/) \| [Video](https://www.youtube.com/watch?v=k-gTqlOBT1g) |
+| 2 | Easy | [LinkedList Cycle](src/main/java/org/example/problems/linkedlist/easy/LinkedListCycle.java) | Given head of linked list, determine if it has a cycle using Floyd's algorithm or hash set. | head = [3,2,0,-4], pos = 1 | true | O(n) | [LeetCode](https://leetcode.com/problems/linked-list-cycle/) \| [Video](https://www.youtube.com/watch?v=k-gTqlOBT1g) |
+| 3 | Easy | [Merge Two Sorted Lists](src/main/java/org/example/problems/linkedlist/easy/MergeTwoSortedLists.java) | Merge two sorted linked lists in sorted order and return the merged list. | l1 = [1,2,4], l2 = [1,3,4] | [1,1,2,3,4,4] | O(m+n) | [LeetCode](https://leetcode.com/problems/merge-two-sorted-lists/) \| [Video](https://www.youtube.com/watch?v=Bwymxn-n6XA) |
+| 4 | Easy | [Middle of the Linked List](src/main/java/org/example/problems/linkedlist/easy/MiddleOfTheLinkedlist.java) | Given head of singly linked list, return the middle node. If two middle nodes, return second middle. | head = [1,2,3,4,5] | [3,4,5] | O(n) | [LeetCode](https://leetcode.com/problems/middle-of-the-linked-list/) \| [Video](https://www.youtube.com/watch?v=s7cHxJBuhjg) |
+| 5 | Easy | [Reverse A Linked List](src/main/java/org/example/problems/linkedlist/easy/ReverseALinkedList.java) | Given head of singly linked list, reverse the list and return the reversed list. | head = [1,2,3,4,5] | [5,4,3,2,1] | O(n) | [LeetCode](https://leetcode.com/problems/reverse-linked-list/) \| [Video](https://www.youtube.com/watch?v=FHhItaCZ2pE) |
+| 6 | Easy | [Reverse Linked List](src/main/java/org/example/problems/linkedlist/easy/ReverseLinkedList.java) | Reverse a singly linked list iteratively or recursively. | head = [1,2,3] | [3,2,1] | O(n) | [LeetCode](https://leetcode.com/problems/reverse-linked-list/) \| [Video](https://www.youtube.com/watch?v=FHhItaCZ2pE) |
+| 7 | Medium | [Add Two Numbers](src/main/java/org/example/problems/linkedlist/medium/AddTwoNumbers.java) | Two non-empty linked lists represent non-negative integers in reverse order. Add them and return as linked list. | l1 = [2,4,3], l2 = [5,6,4] | [7,0,8] | O(max(m,n)) | [LeetCode](https://leetcode.com/problems/add-two-numbers/) \| [Video](https://www.youtube.com/watch?v=MYtp__JpTns) |
+| 8 | Medium | [Copy List with Random Pointer](src/main/java/org/example/problems/linkedlist/medium/CopyListWithRandomPointer.java) | Deep copy a linked list where each node has a random pointer to any node or null. | head = [[7,null],[13,0],[11,4],[10,2],[1,0]] | [[7,null],[13,0],[11,4],[10,2],[1,0]] | O(n) | [LeetCode](https://leetcode.com/problems/copy-list-with-random-pointer/) \| [Video](https://www.youtube.com/watch?v=vy7ZJ4TdyS8) |
+| 9 | Medium | [LRU Cache](src/main/java/org/example/problems/linkedlist/medium/LruCache.java) | Design a data structure that follows Least Recently Used (LRU) cache behavior. | See LeetCode | See LeetCode | O(1) | [LeetCode](https://leetcode.com/problems/lru-cache/) \| [Video](https://www.youtube.com/watch?v=VPq5dlxaeP8) |
+| 10 | Medium | [Remove Nth Node From End of List](src/main/java/org/example/problems/linkedlist/medium/RemoveNthNodeFromEndOfList.java) | Remove the nth node from the end of a linked list and return its head. | head = [1,2,3,4,5], n = 2 | [1,2,3,5] | O(n) | [LeetCode](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) \| [Video](https://www.youtube.com/watch?v=hZtAW3cp8vQ) |
+| 11 | Medium | [Reorder List](src/main/java/org/example/problems/linkedlist/medium/ReorderList.java) | Reorder list from L0→L1→...→Ln to L0→Ln→L1→Ln-1→... in-place without modifying node values. | head = [1,2,3,4] | [1,4,2,3] | O(n) | [LeetCode](https://leetcode.com/problems/reorder-list/) \| [Video](https://www.youtube.com/watch?v=lBdS4AV1EGw) |
+| 12 | Hard | [Merge K Sorted Lists](src/main/java/org/example/problems/linkedlist/hard/MergeKSortedLists.java) | Merge k sorted linked lists into one sorted linked list and return it. | lists = [[1,4,5],[1,3,4],[2,6]] | [1,1,2,3,4,4,5,6] | O(N log k) | [LeetCode](https://leetcode.com/problems/merge-k-sorted-lists/) \| [Video](https://www.youtube.com/watch?v=SlKgDtpJnxg) |
+| 13 | Hard | [Reverse Nodes in K-Group](src/main/java/org/example/problems/linkedlist/hard/ReverseNodesInKGroup.java) | Reverse nodes of a linked list k at a time. If not enough nodes, leave them as-is. | head = [1,2,3,4,5], k = 2 | [2,1,4,3,5] | O(n) | [LeetCode](https://leetcode.com/problems/reverse-nodes-in-k-group/) \| [Video](https://www.youtube.com/watch?v=P9_K8M4nnf0) |
 
 ---
 
-### 4. Tree
+### 4. Stack
 
-#### Easy
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Balanced Binary Tree](src/main/java/org/example/problems/tree/easy/BalancedBinaryTree.java) | O(n) | [Link](https://leetcode.com/problems/balanced-binary-tree/) | |
-| 2 | [Diameter of Binary Tree](src/main/java/org/example/problems/tree/easy/DiameterOfBinaryTree.java) | O(n) | [Link](https://leetcode.com/problems/diameter-of-binary-tree/) | |
-| 3 | [Invert Binary Tree](src/main/java/org/example/problems/tree/easy/InvertBinaryTree.java) | O(n) | [Link](https://leetcode.com/problems/invert-binary-tree/) | |
-| 4 | [Maximum Depth of Binary Tree](src/main/java/org/example/problems/tree/easy/MaximumDepthOfBinaryTree.java) | O(n) | [Link](https://leetcode.com/problems/maximum-depth-of-binary-tree/) | |
-| 5 | [Same Tree](src/main/java/org/example/problems/tree/easy/SameTree.java) | O(n) | [Link](https://leetcode.com/problems/same-tree/) | |
-| 6 | [Subtree of Another Tree](src/main/java/org/example/problems/tree/easy/SubtreeOfAnotherTree.java) | O(n*m) | [Link](https://leetcode.com/problems/subtree-of-another-tree/) | |
-| 7 | [Symmetric Tree](src/main/java/org/example/problems/tree/easy/SymmetricTree.java) | O(n) | [Link](https://leetcode.com/problems/symmetric-tree/) | |
-
-#### Medium
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Add and Search Word](src/main/java/org/example/problems/tree/medium/AddAndSearchWord.java) | O(n) | [Link](https://leetcode.com/problems/add-and-search-word-data-structure-design/) | |
-| 2 | [Binary Tree Level Order Traversal](src/main/java/org/example/problems/tree/medium/BinaryTreeLevelOrderTraversal.java) | O(n) | [Link](https://leetcode.com/problems/binary-tree-level-order-traversal/) | |
-| 3 | [Binary Tree Right Side View](src/main/java/org/example/problems/tree/medium/BinaryTreeRightSideView.java) | O(n) | [Link](https://leetcode.com/problems/binary-tree-right-side-view/) | |
-| 4 | [Binary Tree Zigzag Level Order Traversal](src/main/java/org/example/problems/tree/medium/BinaryTreeZigzagLevelOrderTraversal.java) | O(n) | [Link](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) | |
-| 5 | [Construct Binary Tree from Preorder and Inorder Traversal](src/main/java/org/example/problems/tree/medium/ConstructBinaryTreeFromPreorderAndInorderTraversal.java) | O(n) | [Link](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) | |
-| 6 | [Kth Smallest Element in a BST](src/main/java/org/example/problems/tree/medium/KthSmallestElementInABst.java) | O(n) | [Link](https://leetcode.com/problems/kth-smallest-element-in-a-bst/) | |
-| 7 | [Lowest Common Ancestor of BST](src/main/java/org/example/problems/tree/medium/LowestCommonAncestorOfBst.java) | O(h) | [Link](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) | |
-| 8 | [Validate Binary Search Tree](src/main/java/org/example/problems/tree/medium/ValidateBinarySearchTree.java) | O(n) | [Link](https://leetcode.com/problems/validate-binary-search-tree/) | |
-
-#### Hard
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Binary Tree Maximum Path Sum](src/main/java/org/example/problems/tree/hard/BinaryTreeMaximumPathSum.java) | O(n) | [Link](https://leetcode.com/problems/binary-tree-maximum-path-sum/) | |
-| 2 | [Serialize and Deserialize Binary Tree](src/main/java/org/example/problems/tree/hard/SerializeAndDeserializeBinaryTree.java) | O(n) | [Link](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/) | |
-
----
-
-### 5. Graph
-
-#### Medium
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Clone Graph](src/main/java/org/example/problems/graph/medium/CloneGraph.java) | O(n) | [Link](https://leetcode.com/problems/clone-graph/) | |
-| 2 | [Course Schedule](src/main/java/org/example/problems/graph/medium/CourseSchedule.java) | O(n + e) | [Link](https://leetcode.com/problems/course-schedule/) | |
-| 3 | [Course Schedule II](src/main/java/org/example/problems/graph/medium/CourseScheduleIi.java) | O(n + e) | [Link](https://leetcode.com/problems/course-schedule-ii/) | |
-| 4 | [Graph Valid Tree](src/main/java/org/example/problems/graph/medium/GraphValidTree.java) | O(n) | [Link](https://leetcode.com/problems/graph-valid-tree/) | |
-| 5 | [Number of Connected Components in an Undirected Graph](src/main/java/org/example/problems/graph/medium/NumberOfConnectedComponentsInAnUndirectedGraph.java) | O(n + e) | [Link](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/) | |
-| 6 | [Number of Islands](src/main/java/org/example/problems/graph/medium/NumberOfIslands.java) | O(n*m) | [Link](https://leetcode.com/problems/number-of-islands/) | [Video](https://www.youtube.com/watch?v=H-2Nh2RXX6g) |
-| 7 | [Number of Provinces](src/main/java/org/example/problems/graph/medium/NumberOfProvinces.java) | O(n²) | [Link](https://leetcode.com/problems/number-of-provinces/) | |
-| 8 | [Pacific Atlantic Water Flow](src/main/java/org/example/problems/graph/medium/PacificAtlanticWaterFlow.java) | O(n*m) | [Link](https://leetcode.com/problems/pacific-atlantic-water-flow/) | |
-
-#### Hard
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Alien Dictionary](src/main/java/org/example/problems/graph/hard/AlienDictionary.java) | O(n) | [Link](https://leetcode.com/problems/alien-dictionary/) | |
-| 2 | [Word Ladder](src/main/java/org/example/problems/graph/hard/WordLadder.java) | O(n * m²) | [Link](https://leetcode.com/problems/word-ladder/) | |
-
----
-
-### 6. Dynamic Programming
-
-#### Easy
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Climbing Stairs](src/main/java/org/example/problems/dynamicprogramming/easy/ClimbingStairs.java) | O(n) | [Link](https://leetcode.com/problems/climbing-stairs/) | |
-| 2 | [Min Cost Climbing Stairs](src/main/java/org/example/problems/dynamicprogramming/easy/MinCostClimbingStairs.java) | O(n) | [Link](https://leetcode.com/problems/min-cost-climbing-stairs/) | |
-| 3 | [Pascals Triangle](src/main/java/org/example/problems/dynamicprogramming/easy/PascalsTriangle.java) | O(n²) | [Link](https://leetcode.com/problems/pascals-triangle/) | |
-
-#### Medium
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Coin Change II](src/main/java/org/example/problems/dynamicprogramming/medium/CoinChangeIi.java) | O(amount * n) | [Link](https://leetcode.com/problems/coin-change-ii/) | [Video](https://www.youtube.com/watch?v=khIBdTrRggk) |
-| 2 | [Longest Common Subsequence](src/main/java/org/example/problems/dynamicprogramming/medium/LongestCommonSubsequence.java) | O(m*n) | [Link](https://leetcode.com/problems/longest-common-subsequence/) | |
-| 3 | [Unique Paths](src/main/java/org/example/problems/dynamicprogramming/medium/UniquePaths.java) | O(m*n) | [Link](https://leetcode.com/problems/unique-paths/) | |
-
-#### Hard
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Regular Expression Matching](src/main/java/org/example/problems/dynamicprogramming/hard/RegularExpressionMatching.java) | O(m*n) | [Link](https://leetcode.com/problems/regular-expression-matching/) | |
-
----
-
-### 7. Heap & Priority Queue
-
-#### Easy
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [High Five](src/main/java/org/example/problems/heap/easy/HighFive.java) | O(n log k) | [Link](https://leetcode.com/problems/high-five/) | |
-| 2 | [Kth Largest Element in a Stream](src/main/java/org/example/problems/heap/easy/KthLargestElementInAStream.java) | O(n log k) | [Link](https://leetcode.com/problems/kth-largest-element-in-a-stream/) | |
-| 3 | [Last Stone Weight](src/main/java/org/example/problems/heap/easy/LastStoneWeight.java) | O(n log n) | [Link](https://leetcode.com/problems/last-stone-weight/) | |
-
-#### Medium
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Kth Largest Element in an Array](src/main/java/org/example/problems/heap/medium/KthLargestElementInAnArray.java) | O(n log k) | [Link](https://leetcode.com/problems/kth-largest-element-in-an-array/) | [Video](https://www.youtube.com/watch?v=kmUL7CAOSwc) |
-
-#### Hard
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Find Median from Data Stream](src/main/java/org/example/problems/heap/hard/FindMedianFromDataStream.java) | O(log n) | [Link](https://leetcode.com/problems/find-median-from-data-stream/) | |
-
----
-
-### 8. Backtracking
-
-#### Medium
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Combination Sum II](src/main/java/org/example/problems/backtracking/medium/CombinationSumIi.java) | O(2^n) | [Link](https://leetcode.com/problems/combination-sum-ii/) | |
-| 2 | [Palindrome Partitioning](src/main/java/org/example/problems/backtracking/medium/PalindromePartitioning.java) | O(n * 2^n) | [Link](https://leetcode.com/problems/palindrome-partitioning/) | |
-| 3 | [Permutations](src/main/java/org/example/problems/backtracking/medium/Permutations.java) | O(n!) | [Link](https://leetcode.com/problems/permutations/) | |
-| 4 | [Subsets](src/main/java/org/example/problems/backtracking/medium/Subsets.java) | O(2^n) | [Link](https://leetcode.com/problems/subsets/) | |
-| 5 | [Subsets II](src/main/java/org/example/problems/backtracking/medium/SubsetsIi.java) | O(2^n) | [Link](https://leetcode.com/problems/subsets-ii/) | |
-| 6 | [Word Search](src/main/java/org/example/problems/backtracking/medium/WordSearch.java) | O(n * 3^n) | [Link](https://leetcode.com/problems/word-search/) | |
-
-#### Hard
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [N-Queens](src/main/java/org/example/problems/backtracking/hard/NQueens.java) | O(n!) | [Link](https://leetcode.com/problems/n-queens/) | |
-
----
-
-### 9. Stack
-
-#### Medium
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Min Stack](src/main/java/org/example/problems/stack/medium/MinStack.java) | O(1) | [Link](https://leetcode.com/problems/min-stack/) | [Video](https://www.youtube.com/watch?v=To2iap-ac3g) |
-
----
-
-### 10. Matrix
-
-#### Medium
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Spiral Matrix](src/main/java/org/example/problems/matrix/medium/SpiralMatrix.java) | O(m*n) | [Link](https://leetcode.com/problems/spiral-matrix/) | |
-
----
-
-### 11. Interval
-
-#### Medium
-| # | Problem | Complexity | LeetCode Link | Video |
-|---|---------|------------|---------------|-------|
-| 1 | [Merge Intervals](src/main/java/org/example/problems/interval/medium/MergeIntervals.java) | O(n log n) | [Link](https://leetcode.com/problems/merge-intervals/) | [Video](https://www.youtube.com/watch?v=n3F2v9f8OfY) |
+| # | Level | Problem | Description | Example Input | Example Output | Complexity | Links |
+|---|-------|---------|-------------|--------------|----------------|------------|-------|
+| 1 | Medium | [Car Fleet](src/main/java/org/example/problems/stack/medium/CarFleet.java) | Cars traveling towards target. A car fleet forms when cars arrive or catch up. Return number of fleets. | target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3] | 3 | O(n log n) | [LeetCode](https://leetcode.com/problems/car-fleet/) \| [Video](https://www.youtube.com/watch?v=TPSiTAFhszA) |
+| 2 | Medium | [Daily Temperatures](src/main/java/org/example/problems/stack/medium/DailyTemperatures.java) | Given daily temperatures, return array where answer[i] is days to wait for warmer temperature. | temperatures = [73, 74, 75, 71, 69, 72, 76, 73] | [1, 1, 4, 2, 1, 1, 0, 0] | O(n) | [LeetCode](https://leetcode.com/problems/daily-temperatures/) \| [Video](https://www.youtube.com/watch?v=jmuo4BBfl3I) |
+| 3 | Medium | [Evaluate Reverse Polish Notation](src/main/java/org/example/problems/stack/medium/EvaluateReversePolishNotation.java) | Evaluate arithmetic expression in Reverse Polish Notation (+, -, *, /). | tokens = ["2","1","+","3","*"] | 9 | O(n) | [LeetCode](https://leetcode.com/problems/evaluate-reverse-polish-notation/) \| [Video](https://www.youtube.com/watch?v=vDRZN5i4b8U) |
+| 4 | Medium | [Generate Parentheses](src/main/java/org/example/problems/stack/medium/GenerateParentheses.java) | Given n pairs of parentheses, generate all combinations of well-formed parentheses. | n = 3 | ["((()))","(()())","(())()","()(())","()()()"] | O(2^n) | [LeetCode](https://leetcode.com/problems/generate-parentheses/) \| [Video](https://www.youtube.com/watch?v=VzMyeCMLdPI) |
+| 5 | Medium | [Min Stack](src/main/java/org/example/problems/stack/medium/MinStack.java) | Design a stack with push, pop, top, and getMin in O(1) time. | See problem description | See problem description | O(1) | [LeetCode](https://leetcode.com/problems/min-stack/) \| [Video](https://www.youtube.com/watch?v=To2iap-ac3g) |
+| 6 | Medium | [Maximum Remove to Make Valid Parentheses](src/main/java/org/example/problems/stack/medium/MinimumRemoveToMakeValidParentheses.java) | Remove minimum parentheses to make string valid. Return result in any order. | s = "lee(t(c)o)de)" | "lee(t(c)o)de" | O(n) | [LeetCode](https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/) \| [Video](https://www.youtube.com/watch?v=h9skhJ_UZQo) |
+| 7 | Hard | [Largest Rectangle in Histogram](src/main/java/org/example/problems/stack/hard/LargestRectangleInHistogram.java) | Given histogram heights, find largest rectangle area in the histogram. | heights = [2,1,5,6,2,3] | 10 | O(n) | [LeetCode](https://leetcode.com/problems/largest-rectangle-in-histogram/) \| [Video](https://www.youtube.com/watch?v=IasMlShanvc) |
+| 8 | Hard | [Longest Valid Parentheses](src/main/java/org/example/problems/stack/hard/LongestValidParentheses.java) | Find length of longest valid (well-formed) parentheses substring. | s = ")()())" | 4 | O(n) | [LeetCode](https://leetcode.com/problems/longest-valid-parentheses/) \| [Video](https://www.youtube.com/watch?v=GrSL3c8G6k8) |
+| 9 | Hard | [Max Stack](src/main/java/org/example/problems/stack/hard/MaxStack.java) | Design a stack that supports push, pop, top, retrieving maximum element in O(1). | See problem description | See problem description | O(1) | N/A |
 
 ---
 
