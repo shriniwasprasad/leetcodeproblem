@@ -301,6 +301,15 @@
             background: rgba(255, 0, 0, 0.3);
         }
 
+        .link-btn.solution {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+
+        .link-btn.solution:hover {
+            background: rgba(0, 212, 255, 0.3);
+        }
+
         .link-btn.na {
             background: rgba(128, 128, 128, 0.2);
             color: #808080;
@@ -588,10 +597,43 @@
             }
         ];
 
-        function createProblemCard(problem, index) {
+        function createProblemCard(problem, index, sectionName) {
             const videoLink = problem.video
                 ? `<a href="${problem.video}" target="_blank" class="link-btn video">🎥 Video</a>`
                 : `<span class="link-btn na">NA</span>`;
+
+            // Generate solution link from section and title
+            const sectionMap = {
+                "1. Array & Hashing": { category: "array", level: "easy" },
+                "2. String": { category: "string", level: "easy" },
+                "3. Linked List": { category: "linkedlist", level: "easy" },
+                "4. Stack": { category: "stack", level: "medium" },
+                "5. Sorting": { category: "sorting", level: "easy" },
+                "6. Tree": { category: "tree", level: "easy" },
+                "7. Binary Search": { category: "binarysearch", level: "easy" },
+                "8. Backtracking": { category: "backtracking", level: "medium" },
+                "9. Bit Manipulation": { category: "bitmanipulation", level: "easy" },
+                "10. Binary Bit Manipulation": { category: "binarybitmanipulation", level: "easy" },
+                "11. Design": { category: "design", level: "easy" },
+                "12. Dynamic Programming": { category: "dynamicprogramming", level: "easy" },
+                "13. Graph": { category: "graph", level: "medium" },
+                "14. Hashing": { category: "hashing", level: "easy" },
+                "15. Heap": { category: "heap", level: "easy" },
+                "16. Interval": { category: "interval", level: "easy" },
+                "17. Matrix": { category: "matrix", level: "easy" },
+                "18. Greedy": { category: "greedy", level: "medium" }
+            };
+
+            const levelMap = {
+                "Easy": "easy",
+                "Medium": "medium",
+                "Hard": "hard"
+            };
+
+            const mapped = sectionMap[sectionName] || { category: "unknown", level: "easy" };
+            const problemLevel = levelMap[problem.level] || "easy";
+            const fileName = problem.title.replace(/[^a-zA-Z0-9]/g, '');
+            const solutionLink = `src/main/java/org/example/problems/${mapped.category}/${problemLevel}/${fileName}.java`;
 
             return `
                 <div class="problem-card">
@@ -617,6 +659,7 @@
                         </div>
                     </div>
                     <div class="links">
+                        <a href="${solutionLink}" target="_blank" class="link-btn solution">💻 Solution</a>
                         <a href="${problem.leetcode}" target="_blank" class="link-btn leetcode">🔥 LeetCode</a>
                         ${videoLink}
                     </div>
@@ -639,7 +682,7 @@
                         </div>
                     </div>
                     <div class="section-content">
-                        ${sectionData.problems.map((problem, i) => createProblemCard(problem, i)).join('')}
+                        ${sectionData.problems.map((problem, i) => createProblemCard(problem, i, sectionData.section)).join('')}
                     </div>
                 </div>
             `;
