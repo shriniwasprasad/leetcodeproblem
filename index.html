@@ -1427,6 +1427,14 @@
             { text: "long", type: "type" },
             { text: "float", type: "type" },
             { text: "String", type: "type" },
+            { text: "Integer", type: "class" },
+            { text: "Double", type: "class" },
+            { text: "Boolean", type: "class" },
+            { text: "Character", type: "class" },
+            { text: "Long", type: "class" },
+            { text: "Float", type: "class" },
+            { text: "Byte", type: "class" },
+            { text: "Short", type: "class" },
             { text: "true", type: "value" },
             { text: "false", type: "value" },
             { text: "null", type: "value" },
@@ -1445,6 +1453,10 @@
             { text: "Math.pow(", type: "method" },
             { text: "Arrays.toString(", type: "method" },
             { text: "Arrays.sort(", type: "method" },
+            { text: "Arrays.stream(", type: "method" },
+            { text: "Stream", type: "class" },
+            { text: "IntStream", type: "class" },
+            { text: "Collectors", type: "class" },
             { text: "System.out.println(", type: "method" },
             { text: "length", type: "property" },
             { text: "size()", type: "method" },
@@ -1590,13 +1602,48 @@
             autocompleteInitialized = true;
         }
 
+        // Helper to extract nested or chained expression before dot (e.g. Arrays.stream(arr).filter(...) )
+        function extractExpressionBeforeDot(currentLine, lastDotIndex) {
+            let parenBalance = 0;
+            let bracketBalance = 0;
+            let startIndex = 0;
+            const stopChars = new Set([';', '=', ',', '{', '}', '+', '-', '*', '/', '&', '|', '^', '%', '!', '?', ':']);
+            
+            for (let i = lastDotIndex - 1; i >= 0; i--) {
+                const char = currentLine[i];
+                if (char === ')') {
+                    parenBalance++;
+                } else if (char === '(') {
+                    if (parenBalance === 0) {
+                        startIndex = i + 1;
+                        break;
+                    }
+                    parenBalance--;
+                } else if (char === ']') {
+                    bracketBalance++;
+                } else if (char === '[') {
+                    if (bracketBalance === 0) {
+                        startIndex = i + 1;
+                        break;
+                    }
+                    bracketBalance--;
+                } else if (parenBalance === 0 && bracketBalance === 0) {
+                    if (stopChars.has(char) || /\s/.test(char)) {
+                        startIndex = i + 1;
+                        break;
+                    }
+                }
+            }
+            return currentLine.substring(startIndex, lastDotIndex).trim();
+        }
+
         // Triggers suggestions popup based on prefix length and context
         function handleEditorInput(e) {
             const editor = e.target;
             const pos = editor.selectionStart;
             const text = editor.value.substring(0, pos);
             
-            const wordMatch = text.match(/\b([a-zA-Z_0-9\.\(]+)$/);
+            const wordMatch = text.match(/\b([a-zA-Z_0-9\.\(\)]+)$/);
             
             if (!wordMatch || wordMatch[1].length < 2) {
                 closeAutocomplete();
@@ -1609,7 +1656,11 @@
             // Check if there is a dot in the match for type helper methods
             const lastDotIndex = fullMatch.lastIndexOf('.');
             if (lastDotIndex !== -1) {
-                const objName = fullMatch.substring(0, lastDotIndex);
+                const lines = text.split('\n');
+                const currentLine = lines[lines.length - 1];
+                const lineDotIndex = currentLine.lastIndexOf('.');
+                
+                const objName = extractExpressionBeforeDot(currentLine, lineDotIndex);
                 const methodPart = fullMatch.substring(lastDotIndex + 1);
                 
                 // Retrieve suggestions specific to the object type
@@ -1710,8 +1761,17 @@
                         const editor = e.target;
                         const pos = editor.selectionStart;
                         const text = editor.value.substring(0, pos);
-                        const wordMatch = text.match(/\b([a-zA-Z_0-9\.\(]+)$/);
-                        const prefixLength = wordMatch ? wordMatch[1].length : 0;
+                        const wordMatch = text.match(/\b([a-zA-Z_0-9\.\(\)]+)$/);
+                        let prefixLength = 0;
+                        if (wordMatch) {
+                            const fullMatch = wordMatch[1];
+                            const lastDotIndex = fullMatch.lastIndexOf('.');
+                            if (lastDotIndex !== -1) {
+                                prefixLength = fullMatch.substring(lastDotIndex + 1).length;
+                            } else {
+                                prefixLength = fullMatch.length;
+                            }
+                        }
                         selectSuggestion(activeSuggestion.text, prefixLength);
                     }
                 } else if (e.key === 'Escape') {
@@ -1946,12 +2006,14 @@
         // Dynamic Variable Autocomplete Scanner
         function getDeclaredVariables(code) {
             const declarations = [];
-            // Match standard Java type variable declarations: Type name; or Type name = value;
-            const varRegex = /\b(int|double|boolean|String|char|float|long|var|ListNode|TreeNode|Map|List|Set|HashMap|HashSet|ArrayList)\s+([a-zA-Z_0-9]+)\b/g;
+            // Match standard Java type variable declarations (including generics and 1D/2D arrays): Type name; or Type name = value;
+            const varRegex = /\b(int|double|boolean|char|float|long|byte|short|Integer|Double|Boolean|Character|Long|Float|Byte|Short|String|var|ListNode|TreeNode|Map|List|Set|HashMap|HashSet|ArrayList|Queue|Stack|StringBuilder)(?:<[a-zA-Z0-9_,\s\<\>\[\]]+>)?((?:\s*\[\s*\])+)?\s+([a-zA-Z_0-9]+)\b/g;
             let match;
             while ((match = varRegex.exec(code)) !== null) {
-                const type = match[1];
-                const name = match[2];
+                const baseType = match[1];
+                const arrayPart = match[2] ? match[2].replace(/\s+/g, '') : '';
+                const name = match[3];
+                const type = baseType + arrayPart;
                 // Prevent keywords or duplicate matches
                 if (name && !declarations.some(d => d.text === name)) {
                     declarations.push({ text: name, type: `variable (${type})` });
@@ -1974,21 +2036,43 @@
                 typeName = objName; // static class e.g. "Arrays", "Math", "System.out"
             }
             
+            const arrayInstanceMethods = [
+                { text: "length", type: "property" },
+                { text: "clone()", type: "method" },
+                { text: "hashCode()", type: "method" },
+                { text: "equals(", type: "method" },
+                { text: "toString()", type: "method" },
+                { text: "getClass()", type: "method" }
+            ];
+            
             const listMethods = [
                 { text: "add(", type: "method" },
+                { text: "addAll(", type: "method" },
                 { text: "get(", type: "method" },
                 { text: "size()", type: "method" },
                 { text: "isEmpty()", type: "method" },
                 { text: "contains(", type: "method" },
+                { text: "containsAll(", type: "method" },
                 { text: "remove(", type: "method" },
+                { text: "removeAll(", type: "method" },
+                { text: "retainAll(", type: "method" },
                 { text: "clear()", type: "method" },
                 { text: "set(", type: "method" },
-                { text: "indexOf(", type: "method" }
+                { text: "indexOf(", type: "method" },
+                { text: "toArray()", type: "method" },
+                { text: "iterator()", type: "method" },
+                { text: "stream()", type: "method" },
+                { text: "sort(", type: "method" },
+                { text: "of(", type: "method" },
+                { text: "copyOf(", type: "method" }
             ];
             
             const mapMethods = [
                 { text: "put(", type: "method" },
                 { text: "get(", type: "method" },
+                { text: "getOrDefault(", type: "method" },
+                { text: "putIfAbsent(", type: "method" },
+                { text: "replace(", type: "method" },
                 { text: "containsKey(", type: "method" },
                 { text: "containsValue(", type: "method" },
                 { text: "remove(", type: "method" },
@@ -1996,16 +2080,29 @@
                 { text: "isEmpty()", type: "method" },
                 { text: "clear()", type: "method" },
                 { text: "keySet()", type: "method" },
-                { text: "values()", type: "method" }
+                { text: "values()", type: "method" },
+                { text: "entrySet()", type: "method" },
+                { text: "forEach(", type: "method" },
+                { text: "of(", type: "method" },
+                { text: "copyOf(", type: "method" }
             ];
             
             const setMethods = [
                 { text: "add(", type: "method" },
+                { text: "addAll(", type: "method" },
                 { text: "contains(", type: "method" },
+                { text: "containsAll(", type: "method" },
                 { text: "remove(", type: "method" },
+                { text: "removeAll(", type: "method" },
+                { text: "retainAll(", type: "method" },
                 { text: "size()", type: "method" },
                 { text: "isEmpty()", type: "method" },
-                { text: "clear()", type: "method" }
+                { text: "clear()", type: "method" },
+                { text: "toArray()", type: "method" },
+                { text: "iterator()", type: "method" },
+                { text: "stream()", type: "method" },
+                { text: "of(", type: "method" },
+                { text: "copyOf(", type: "method" }
             ];
             
             const stringMethods = [
@@ -2042,7 +2139,11 @@
                 { text: "equals(", type: "method" },
                 { text: "fill(", type: "method" },
                 { text: "copyOf(", type: "method" },
-                { text: "asList(", type: "method" }
+                { text: "asList(", type: "method" },
+                { text: "stream(", type: "method" },
+                { text: "setAll(", type: "method" },
+                { text: "parallelSort(", type: "method" },
+                { text: "parallelPrefix(", type: "method" }
             ];
 
             const mathMethods = [
@@ -2084,7 +2185,21 @@
                 { text: "findFirst()", type: "method" },
                 { text: "findAny()", type: "method" },
                 { text: "count()", type: "method" },
-                { text: "toArray(", type: "method" }
+                { text: "toArray(", type: "method" },
+                { text: "mapToInt(", type: "method" },
+                { text: "mapToLong(", type: "method" },
+                { text: "mapToDouble(", type: "method" },
+                { text: "flatMap(", type: "method" },
+                { text: "peek(", type: "method" },
+                { text: "min(", type: "method" },
+                { text: "max(", type: "method" }
+            ];
+
+            const streamStaticMethods = [
+                { text: "of(", type: "method" },
+                { text: "empty()", type: "method" },
+                { text: "concat(", type: "method" },
+                { text: "builder()", type: "method" }
             ];
 
             const collectorsMethods = [
@@ -2093,7 +2208,23 @@
                 { text: "toMap(", type: "method" },
                 { text: "joining(", type: "method" },
                 { text: "groupingBy(", type: "method" },
-                { text: "counting()", type: "method" }
+                { text: "counting()", type: "method" },
+                { text: "summarizingInt(", type: "method" },
+                { text: "summarizingDouble(", type: "method" },
+                { text: "summarizingLong(", type: "method" },
+                { text: "summingInt(", type: "method" },
+                { text: "summingDouble(", type: "method" },
+                { text: "summingLong(", type: "method" },
+                { text: "averagingInt(", type: "method" },
+                { text: "averagingDouble(", type: "method" },
+                { text: "averagingLong(", type: "method" },
+                { text: "mapping(", type: "method" },
+                { text: "filtering(", type: "method" },
+                { text: "flatMapping(", type: "method" },
+                { text: "reducing(", type: "method" },
+                { text: "toUnmodifiableList()", type: "method" },
+                { text: "toUnmodifiableSet()", type: "method" },
+                { text: "toUnmodifiableMap(", type: "method" }
             ];
 
             const intStreamMethods = [
@@ -2108,6 +2239,9 @@
             ];
 
             const type = typeName.toLowerCase();
+            if (type.endsWith("[]")) {
+                return arrayInstanceMethods;
+            }
             if (type.includes("list") || type.includes("arraylist") || type.includes("linkedlist")) {
                 return listMethods;
             }
@@ -2135,14 +2269,21 @@
             if (type === "system") {
                 return systemMethods;
             }
-            if (type.includes("stream") || type.endsWith("stream()")) {
+            if (type.includes("intstream")) {
+                return intStreamMethods;
+            }
+            if (type === "stream") {
+                if (objName.toLowerCase() === "stream") {
+                    return streamStaticMethods;
+                } else {
+                    return streamMethods;
+                }
+            }
+            if (type.includes("stream") || type.includes("map(") || type.includes("filter(") || type.includes("sorted(") || type.includes("distinct(") || type.includes("limit(") || type.includes("skip(") || type.includes("flatmap(") || type.includes("peek(") || type.endsWith("stream()")) {
                 return streamMethods;
             }
             if (type === "collectors") {
                 return collectorsMethods;
-            }
-            if (type === "intstream") {
-                return intStreamMethods;
             }
             
             return [];
