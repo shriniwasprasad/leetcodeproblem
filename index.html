@@ -315,6 +315,566 @@
             color: #808080;
         }
 
+        /* Coding Theme CSS Variable Palettes */
+        :root {
+            /* Default One Dark theme custom variables */
+            --editor-bg: #282c34;
+            --editor-text: #abb2bf;
+            --editor-numbers: #5c6370;
+            --editor-numbers-bg: #21252b;
+            --editor-border: rgba(255, 255, 255, 0.05);
+            --console-bg: #21252b;
+            --console-sidebar: #282c34;
+            --console-text: #abb2bf;
+            
+            --syntax-keyword: #c678dd;
+            --syntax-type: #61afef;
+            --syntax-string: #98c379;
+            --syntax-comment: #5c6370;
+        }
+
+        .theme-monokai {
+            --editor-bg: #090d16;
+            --editor-text: #e2e8f0;
+            --editor-numbers: #4b5563;
+            --editor-numbers-bg: #070a10;
+            --editor-border: rgba(255, 255, 255, 0.05);
+            --console-bg: #0f172a;
+            --console-sidebar: #0b0f19;
+            --console-text: #cbd5e1;
+            
+            --syntax-keyword: #f92672;
+            --syntax-type: #66d9ef;
+            --syntax-string: #e6db74;
+            --syntax-comment: #75715e;
+        }
+
+        .theme-dracula {
+            --editor-bg: #282a36;
+            --editor-text: #f8f8f2;
+            --editor-numbers: #6272a4;
+            --editor-numbers-bg: #1e1f29;
+            --editor-border: rgba(255, 255, 255, 0.05);
+            --console-bg: #1e1f29;
+            --console-sidebar: #282a36;
+            --console-text: #f8f8f2;
+            
+            --syntax-keyword: #ff79c6;
+            --syntax-type: #8be9fd;
+            --syntax-string: #f1fa8c;
+            --syntax-comment: #6272a4;
+        }
+
+        .theme-solarized {
+            --editor-bg: #fdf6e3;
+            --editor-text: #657b83;
+            --editor-numbers: #93a1a1;
+            --editor-numbers-bg: #eee8d5;
+            --editor-border: rgba(0, 0, 0, 0.08);
+            --console-bg: #eee8d5;
+            --console-sidebar: #fdf6e3;
+            --console-text: #657b83;
+            
+            --syntax-keyword: #859900;
+            --syntax-type: #268bd2;
+            --syntax-string: #2aa198;
+            --syntax-comment: #93a1a1;
+        }
+
+        /* Autocomplete Suggestions Popup */
+        .autocomplete-popup {
+            display: none;
+            position: absolute;
+            background: #1e293b;
+            border: 1px solid rgba(224, 64, 251, 0.4);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(224, 64, 251, 0.1);
+            z-index: 1050;
+            max-height: 200px;
+            overflow-y: auto;
+            width: 250px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .autocomplete-item {
+            padding: 8px 12px;
+            color: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .autocomplete-item:hover, .autocomplete-item.active {
+            background: rgba(156, 39, 176, 0.25);
+            color: #e040fb;
+        }
+
+        .autocomplete-item .badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #64748b;
+        }
+
+        .autocomplete-item:hover .badge, .autocomplete-item.active .badge {
+            background: rgba(224, 64, 251, 0.2);
+            color: #e040fb;
+        }
+
+        /* Autocomplete Suggestions Popup */
+        .autocomplete-popup {
+            display: none;
+            position: absolute;
+            background: #1e293b;
+            border: 1px solid rgba(224, 64, 251, 0.4);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(224, 64, 251, 0.1);
+            z-index: 1050;
+            max-height: 200px;
+            overflow-y: auto;
+            width: 250px;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .autocomplete-item {
+            padding: 8px 12px;
+            color: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .autocomplete-item:hover, .autocomplete-item.active {
+            background: rgba(156, 39, 176, 0.25);
+            color: #e040fb;
+        }
+
+        .autocomplete-item .badge {
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #64748b;
+        }
+
+        .autocomplete-item:hover .badge, .autocomplete-item.active .badge {
+            background: rgba(224, 64, 251, 0.2);
+            color: #e040fb;
+        }
+
+        /* Practice Compiler Workspace Styles */
+        .compiler-workspace {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 1000;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .compiler-workspace.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .compiler-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(15, 52, 96, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .compiler-title-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .compiler-title-area h2 {
+            font-size: 1.3rem;
+            color: #fff;
+        }
+
+        .compiler-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .compiler-close-btn {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #a0a0a0;
+            transition: color 0.3s;
+            line-height: 1;
+            margin-left: 15px;
+        }
+
+        .compiler-close-btn:hover {
+            color: #ff5252;
+        }
+
+        .compiler-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Left Panel - Problem Details */
+        .compiler-problem-pane {
+            padding: 25px;
+            background: rgba(26, 26, 46, 0.4);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .compiler-problem-pane h3 {
+            color: #00d4ff;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
+        }
+
+        .compiler-meta-badge {
+            background: rgba(156, 39, 176, 0.15);
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            color: #e040fb;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .compiler-meta-badge p {
+            margin-bottom: 5px;
+        }
+
+        .compiler-meta-badge p:last-child {
+            margin-bottom: 0;
+        }
+
+        .compiler-sample-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #c0c0c8;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* Right Panel - Editor & Console */
+        .compiler-editor-pane {
+            display: grid;
+            grid-template-rows: 1fr 220px;
+            overflow: hidden;
+            background: var(--editor-bg);
+        }
+
+        /* Custom Code Editor Box */
+        .editor-workspace {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--editor-border);
+            background: var(--editor-bg);
+        }
+
+        .editor-line-numbers {
+            width: 45px;
+            padding: 20px 10px;
+            background: var(--editor-numbers-bg);
+            color: var(--editor-numbers);
+            text-align: right;
+            user-select: none;
+            overflow: hidden;
+            line-height: 1.5;
+        }
+
+        .editor-container {
+            flex: 1;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .editor-textarea, .editor-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 20px 15px;
+            box-sizing: border-box;
+            font-family: 'Consolas', 'Courier New', Courier, monospace !important;
+            font-size: 0.95rem !important;
+            line-height: 1.5 !important;
+            white-space: pre;
+            word-wrap: normal;
+            background: transparent !important;
+            tab-size: 4;
+            -moz-tab-size: 4;
+        }
+
+        .editor-textarea {
+            color: transparent !important;
+            -webkit-text-fill-color: transparent !important;
+            caret-color: var(--editor-text);
+            resize: none;
+            outline: none;
+            border: none;
+            z-index: 2;
+            overflow: auto;
+        }
+
+        .editor-textarea::placeholder {
+            color: #4b5563 !important;
+            -webkit-text-fill-color: #4b5563 !important;
+            opacity: 0.6;
+        }
+
+        .editor-highlight {
+            color: var(--editor-text);
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+            border: none;
+        }
+
+        .editor-highlight code {
+            font-family: inherit !important;
+            font-size: inherit !important;
+            line-height: inherit !important;
+            background: transparent !important;
+            padding: 0 !important;
+            display: block;
+        }
+
+        /* Console Panel */
+        .console-workspace {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            background: var(--console-bg);
+            overflow: hidden;
+        }
+
+        .console-input-area {
+            padding: 15px;
+            background: var(--console-sidebar);
+            border-right: 1px solid var(--editor-border);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .console-input-area h4 {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .console-stdin-textarea {
+            width: 100%;
+            flex: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            color: var(--editor-text);
+            padding: 10px;
+            resize: none;
+            font-family: monospace;
+            font-size: 0.85rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .console-stdin-textarea:focus {
+            border-color: rgba(156, 39, 176, 0.5);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .console-output-area {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .console-output-header {
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .console-output-header h4 {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            text-transform: uppercase;
+        }
+
+        .console-output-meta {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .console-terminal {
+            flex: 1;
+            padding: 15px 20px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: var(--console-text);
+            line-height: 1.6;
+            white-space: pre-wrap;
+            background: var(--console-bg);
+        }
+
+        /* Neon Purple Glowing Buttons for Practice */
+        .link-btn.practice {
+            background: rgba(156, 39, 176, 0.2);
+            color: #e040fb;
+            border: 1px solid rgba(156, 39, 176, 0.2);
+            cursor: pointer;
+        }
+
+        .link-btn.practice:hover {
+            background: rgba(156, 39, 176, 0.35);
+            box-shadow: 0 0 15px rgba(224, 64, 251, 0.4);
+            border-color: rgba(224, 64, 251, 0.5);
+        }
+
+        /* Theme Select and Control Buttons */
+        .theme-select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: #a0a0a0;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .theme-select:hover {
+            border-color: rgba(224, 64, 251, 0.5);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .theme-select option {
+            background: #1a1a2e;
+            color: #cbd5e1;
+        }
+
+        .btn-format {
+            background: rgba(0, 212, 255, 0.15);
+            color: #00d4ff;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-format:hover {
+            background: rgba(0, 212, 255, 0.25);
+            border-color: #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .code-keyword { color: var(--syntax-keyword); font-weight: bold; }
+        .code-type { color: var(--syntax-type); }
+        .code-string { color: var(--syntax-string); }
+        .code-comment { color: var(--syntax-comment); font-style: italic; }
+
+        .btn-run {
+            background: linear-gradient(135deg, #7b2cbf, #e040fb);
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(224, 64, 251, 0.3);
+        }
+
+        .btn-run:hover {
+            box-shadow: 0 6px 20px rgba(224, 64, 251, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .btn-run:active {
+            transform: translateY(1px);
+        }
+
+        .btn-run:disabled {
+            background: #475569;
+            color: #94a3b8;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-reset {
+            background: transparent;
+            color: #a0a0a0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-reset:hover {
+            color: #fff;
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 900px) {
+            .compiler-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: 250px 1fr;
+            }
+
+            .compiler-problem-pane {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+        }
+
         footer {
             text-align: center;
             padding: 30px;
@@ -726,6 +1286,7 @@
                     <div class="links">
                         <a href="${solutionLink}" target="_blank" class="link-btn solution">💻 Solution</a>
                         <a href="${problem.leetcode}" target="_blank" class="link-btn leetcode">🔥 LeetCode</a>
+                        <button class="link-btn practice" onclick="openPractice('${problem.title.replace(/'/g, "\\'")}', '${problem.level}', '${problem.complexity}', '${solutionLink}', '${problem.leetcode}', '${problem.input.replace(/'/g, "\\'")}', '${problem.output.replace(/'/g, "\\'")}')">🚀 Practice</button>
                         ${videoLink}
                     </div>
                 </div>
@@ -788,6 +1349,949 @@
 
         // Initial render
         renderSections(problemsData);
+
+        // Immersive Coding Playground state
+        let activePractice = null;
+        let originalTemplate = "";
+
+        // Open compiler playground
+        async function openPractice(title, level, complexity, solutionPath, leetcodeUrl, sampleInput, sampleOutput) {
+            activePractice = { title, level, complexity, solutionPath, leetcodeUrl, sampleInput, sampleOutput };
+            
+            // Set problem specifications
+            document.getElementById('compilerTitle').textContent = `Practice: ${title}`;
+            document.getElementById('compilerComplexity').textContent = complexity;
+            document.getElementById('compilerPath').textContent = solutionPath;
+            document.getElementById('compilerInput').textContent = sampleInput;
+            document.getElementById('compilerOutput').textContent = sampleOutput;
+            
+            const difficultyBadge = document.getElementById('compilerDifficulty');
+            difficultyBadge.textContent = level;
+            difficultyBadge.className = `difficulty ${level.toLowerCase()}`;
+            
+            // Set loading state inside console
+            document.getElementById('consoleTerminal').className = "console-terminal";
+            document.getElementById('consoleTerminal').textContent = "Ready to compile. Loading local code template...";
+            document.getElementById('consoleTerminal').style.color = "#cbd5e1";
+            document.getElementById('consoleMeta').textContent = "Time: 0.00s | Memory: 0KB";
+            document.getElementById('stdinEditor').value = "";
+            
+            // Show Workspace
+            const workspace = document.getElementById('compilerWorkspace');
+            workspace.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Lock main scrolling
+            
+            const editor = document.getElementById('codeEditor');
+            editor.value = "Loading template from local file...";
+            updateEditorLineNumbers();
+            
+            try {
+                const response = await fetch(solutionPath);
+                if (!response.ok) throw new Error("CORS/Offline");
+                const codeText = await response.text();
+                
+                originalTemplate = codeText;
+                editor.value = codeText;
+            } catch (e) {
+                // Generates a complete, high-quality runnable standalone starter template offline
+                const className = title.replace(/[^a-zA-Z0-9]/g, '');
+                const defaultCode = `import java.util.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println("--- ${title} Practice ---");\n        System.out.println("Sample Input: ${sampleInput}");\n        System.out.println("Expected Output: ${sampleOutput}");\n        \n        // Write test execution code here\n        System.out.println("Output: " + solution());\n    }\n\n    public static String solution() {\n        // Practice your optimal ${complexity} solution here\n        return "Hello World";\n    }\n}`;
+                originalTemplate = defaultCode;
+                editor.value = defaultCode;
+            }
+            
+            updateEditorLineNumbers();
+            setupAutocomplete();
+            editor.focus();
+        }
+
+        // Autocomplete Engine state & list
+        const javaSuggestions = [
+            { text: "public", type: "keyword" },
+            { text: "private", type: "keyword" },
+            { text: "class", type: "keyword" },
+            { text: "static", type: "keyword" },
+            { text: "void", type: "keyword" },
+            { text: "return", type: "keyword" },
+            { text: "new", type: "keyword" },
+            { text: "import", type: "keyword" },
+            { text: "package", type: "keyword" },
+            { text: "if", type: "keyword" },
+            { text: "else", type: "keyword" },
+            { text: "for", type: "keyword" },
+            { text: "while", type: "keyword" },
+            { text: "int", type: "type" },
+            { text: "double", type: "type" },
+            { text: "boolean", type: "type" },
+            { text: "char", type: "type" },
+            { text: "long", type: "type" },
+            { text: "float", type: "type" },
+            { text: "String", type: "type" },
+            { text: "true", type: "value" },
+            { text: "false", type: "value" },
+            { text: "null", type: "value" },
+            { text: "List", type: "class" },
+            { text: "ArrayList", type: "class" },
+            { text: "Map", type: "class" },
+            { text: "HashMap", type: "class" },
+            { text: "Set", type: "class" },
+            { text: "HashSet", type: "class" },
+            { text: "Queue", type: "class" },
+            { text: "LinkedList", type: "class" },
+            { text: "Stack", type: "class" },
+            { text: "Math.max(", type: "method" },
+            { text: "Math.min(", type: "method" },
+            { text: "Math.abs(", type: "method" },
+            { text: "Math.pow(", type: "method" },
+            { text: "Arrays.toString(", type: "method" },
+            { text: "Arrays.sort(", type: "method" },
+            { text: "System.out.println(", type: "method" },
+            { text: "length", type: "property" },
+            { text: "size()", type: "method" },
+            { text: "isEmpty()", type: "method" },
+            { text: "containsKey(", type: "method" },
+            { text: "containsValue(", type: "method" },
+            { text: "get(", type: "method" },
+            { text: "put(", type: "method" },
+            { text: "add(", type: "method" },
+            { text: "contains(", type: "method" },
+            { text: "remove(", type: "method" },
+            { text: "StringBuilder", type: "class" },
+            { text: "append(", type: "method" },
+            { text: "toString()", type: "method" },
+            { text: "charAt(", type: "method" },
+            { text: "substring(", type: "method" }
+        ];
+
+        let activeSuggestionIndex = -1;
+        let filteredSuggestions = [];
+        let autocompleteInitialized = false;
+
+        // Initialize autocompletion and workspace keydown overrides
+        function setupAutocomplete() {
+            if (autocompleteInitialized) return;
+            
+            const editor = document.getElementById('codeEditor');
+            let popup = document.getElementById('autocompletePopup');
+            if (!popup) {
+                popup = document.createElement('div');
+                popup.id = 'autocompletePopup';
+                popup.className = 'autocomplete-popup';
+                document.body.appendChild(popup);
+            }
+
+            // Sync scrolling of line numbers with textarea scroll position
+            editor.addEventListener('scroll', function() {
+                const lineNumbers = document.getElementById('lineNumbers');
+                lineNumbers.scrollTop = this.scrollTop;
+                
+                const highlightOverlay = document.getElementById('highlightOverlay');
+                if (highlightOverlay) {
+                    highlightOverlay.scrollTop = this.scrollTop;
+                    highlightOverlay.scrollLeft = this.scrollLeft;
+                }
+            });
+
+            // Update line numbers on text input changes
+            editor.addEventListener('input', function() {
+                updateEditorLineNumbers();
+                handleEditorInput({ target: this });
+            });
+
+            // Tab and Enter key overrides
+            editor.addEventListener('keydown', function(event) {
+                if (event.key === 'Tab') {
+                    // Only override Tab if suggestions list is NOT active
+                    const popup = document.getElementById('autocompletePopup');
+                    if (popup && popup.style.display === 'block') {
+                        return; // Let handleEditorKeydown handle selection
+                    }
+                    
+                    event.preventDefault();
+                    const start = this.selectionStart;
+                    const end = this.selectionEnd;
+                    
+                    // Insert 4 spaces using execCommand to preserve browser history
+                    if (!document.execCommand("insertText", false, "    ")) {
+                        this.value = this.value.substring(0, start) + "    " + this.value.substring(end);
+                        this.selectionStart = this.selectionEnd = start + 4;
+                    }
+                    updateEditorLineNumbers();
+                } else if (event.key === 'Enter') {
+                    // Only override Enter if suggestions list is NOT active
+                    const popup = document.getElementById('autocompletePopup');
+                    if (popup && popup.style.display === 'block') {
+                        return; // Let handleEditorKeydown handle selection
+                    }
+                    
+                    event.preventDefault();
+                    
+                    const start = this.selectionStart;
+                    const end = this.selectionEnd;
+                    const value = this.value;
+                    
+                    // Find the start of the current line
+                    const beforeText = value.substring(0, start);
+                    const lastNewline = beforeText.lastIndexOf('\n');
+                    const currentLine = beforeText.substring(lastNewline + 1);
+                    
+                    // Get existing indentation of the current line
+                    const indentMatch = currentLine.match(/^(\s*)/);
+                    let indentation = indentMatch ? indentMatch[1] : "";
+                    
+                    // If current line ends with opening curly brace '{', increase indentation for next line
+                    const trimmedLine = currentLine.trim();
+                    let extraIndent = "";
+                    let isBracing = false;
+                    
+                    if (trimmedLine.endsWith('{')) {
+                        extraIndent = "    ";
+                        isBracing = true;
+                    }
+                    
+                    let newText = "\n" + indentation + extraIndent;
+                    let cursorOffset = newText.length;
+                    
+                    // Auto-close opening curly brace on Enter:
+                    // If isBracing is true, we automatically generate a split brace layout
+                    // consisting of a newline + indented line + a second newline + closing brace.
+                    // If the next character in the editor is ALREADY '}', we split but don't add a duplicate '}'.
+                    const afterText = value.substring(end);
+                    if (isBracing) {
+                        if (afterText.startsWith('}')) {
+                            // Split existing braces: don't insert a duplicate '}'
+                            newText = "\n" + indentation + extraIndent + "\n" + indentation;
+                        } else {
+                            // Automatically insert new closing brace '}' on a separate line
+                            newText = "\n" + indentation + extraIndent + "\n" + indentation + "}";
+                        }
+                        cursorOffset = 1 + indentation.length + extraIndent.length;
+                    }
+                    
+                    // Insert the text using execCommand to preserve browser undo history
+                    if (!document.execCommand("insertText", false, newText)) {
+                        this.value = value.substring(0, start) + newText + value.substring(end);
+                        this.selectionStart = this.selectionEnd = start + cursorOffset;
+                    } else {
+                        // execCommand inserts the text and places selection at the end of inserted text.
+                        // Adjust cursor position manually to keep cursor on the middle indented line.
+                        if (isBracing) {
+                            this.selectionStart = this.selectionEnd = start + cursorOffset;
+                        }
+                    }
+                    
+                    updateEditorLineNumbers();
+                }
+            });
+
+            editor.addEventListener('keydown', handleEditorKeydown);
+            editor.addEventListener('click', closeAutocomplete);
+            
+            autocompleteInitialized = true;
+        }
+
+        // Triggers suggestions popup based on prefix length and context
+        function handleEditorInput(e) {
+            const editor = e.target;
+            const pos = editor.selectionStart;
+            const text = editor.value.substring(0, pos);
+            
+            const wordMatch = text.match(/\b([a-zA-Z_0-9\.\(]+)$/);
+            
+            if (!wordMatch || wordMatch[1].length < 2) {
+                closeAutocomplete();
+                return;
+            }
+            
+            const fullMatch = wordMatch[1];
+            const variables = getDeclaredVariables(editor.value);
+            
+            // Check if there is a dot in the match for type helper methods
+            const lastDotIndex = fullMatch.lastIndexOf('.');
+            if (lastDotIndex !== -1) {
+                const objName = fullMatch.substring(0, lastDotIndex);
+                const methodPart = fullMatch.substring(lastDotIndex + 1);
+                
+                // Retrieve suggestions specific to the object type
+                const methods = getDotSuggestions(objName, variables);
+                
+                // Filter methods by typed search string after dot
+                const prefixLower = methodPart.toLowerCase();
+                filteredSuggestions = methods.filter(s => s.text.toLowerCase().startsWith(prefixLower));
+                
+                if (filteredSuggestions.length === 0) {
+                    closeAutocomplete();
+                    return;
+                }
+                
+                activeSuggestionIndex = 0;
+                renderSuggestionsList(editor, pos, methodPart); // Replace only the methodPart portion
+                return;
+            }
+            
+            const prefix = fullMatch.toLowerCase();
+            
+            // Gather default and harvested variables suggestions
+            let suggestions = [...javaSuggestions];
+            suggestions = [...suggestions, ...variables];
+            
+            filteredSuggestions = suggestions.filter(s => s.text.toLowerCase().startsWith(prefix) && s.text.toLowerCase() !== prefix);
+            
+            if (filteredSuggestions.length === 0) {
+                closeAutocomplete();
+                return;
+            }
+            
+            activeSuggestionIndex = 0;
+            renderSuggestionsList(editor, pos, fullMatch);
+        }
+
+        // Render floating suggestions card
+        function renderSuggestionsList(editor, pos, prefix) {
+            const popup = document.getElementById('autocompletePopup');
+            
+            let html = "";
+            filteredSuggestions.forEach((s, idx) => {
+                const activeClass = idx === activeSuggestionIndex ? "active" : "";
+                html += `
+                    <div class="autocomplete-item ${activeClass}" onclick="selectSuggestion('${s.text}', ${prefix.length})">
+                        <span>${s.text}</span>
+                        <span class="badge">${s.type}</span>
+                    </div>
+                `;
+            });
+            
+            popup.innerHTML = html;
+            
+            // Mirror caret position
+            const coords = getCaretCoordinates(editor, pos - prefix.length);
+            const rect = editor.getBoundingClientRect();
+            
+            // Dropdown floats beautifully below current cursor line
+            popup.style.top = (rect.top + window.scrollY + coords.top + 20 - editor.scrollTop) + "px";
+            popup.style.left = (rect.left + window.scrollX + coords.left - editor.scrollLeft) + "px";
+            popup.style.display = "block";
+        }
+
+        // Injects suggestion text into caret location
+        function selectSuggestion(suggestionText, prefixLength) {
+            const editor = document.getElementById('codeEditor');
+            const pos = editor.selectionStart;
+            const start = pos - prefixLength;
+            
+            editor.focus();
+            editor.setSelectionRange(start, pos);
+            
+            if (!document.execCommand("insertText", false, suggestionText)) {
+                editor.value = editor.value.substring(0, start) + suggestionText + editor.value.substring(pos);
+                editor.selectionStart = editor.selectionEnd = start + suggestionText.length;
+            }
+            
+            closeAutocomplete();
+            updateEditorLineNumbers();
+        }
+
+        // Intercepts enter, tab, and arrows inside suggestions dropdown
+        function handleEditorKeydown(e) {
+            const popup = document.getElementById('autocompletePopup');
+            if (popup && popup.style.display === 'block') {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    activeSuggestionIndex = (activeSuggestionIndex + 1) % filteredSuggestions.length;
+                    highlightActiveSuggestion();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    activeSuggestionIndex = (activeSuggestionIndex - 1 + filteredSuggestions.length) % filteredSuggestions.length;
+                    highlightActiveSuggestion();
+                } else if (e.key === 'Enter' || e.key === 'Tab') {
+                    e.preventDefault();
+                    const activeSuggestion = filteredSuggestions[activeSuggestionIndex];
+                    if (activeSuggestion) {
+                        const editor = e.target;
+                        const pos = editor.selectionStart;
+                        const text = editor.value.substring(0, pos);
+                        const wordMatch = text.match(/\b([a-zA-Z_0-9\.\(]+)$/);
+                        const prefixLength = wordMatch ? wordMatch[1].length : 0;
+                        selectSuggestion(activeSuggestion.text, prefixLength);
+                    }
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    closeAutocomplete();
+                }
+            }
+        }
+
+        function highlightActiveSuggestion() {
+            const popup = document.getElementById('autocompletePopup');
+            const items = popup.querySelectorAll('.autocomplete-item');
+            items.forEach((item, idx) => {
+                if (idx === activeSuggestionIndex) {
+                    item.classList.add('active');
+                    item.scrollIntoView({ block: 'nearest' });
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function closeAutocomplete() {
+            const popup = document.getElementById('autocompletePopup');
+            if (popup) {
+                popup.style.display = 'none';
+            }
+        }
+
+        // Caret positioning mirror implementation
+        function getCaretCoordinates(textarea, position) {
+            const properties = [
+                'direction', 'boxSizing', 'width', 'height', 'overflowX', 'overflowY',
+                'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth',
+                'borderStyle', 'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft',
+                'fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize',
+                'fontSizeAdjust', 'lineHeight', 'fontFamily', 'textAlign',
+                'textTransform', 'textIndent', 'textDecoration', 'letterSpacing', 'wordSpacing',
+                'tabSize', 'MozTabSize'
+            ];
+            
+            const div = document.createElement('div');
+            div.id = 'input-textarea-caret-position-mirror-div';
+            document.body.appendChild(div);
+            
+            const style = div.style;
+            const computed = window.getComputedStyle(textarea);
+            
+            style.whiteSpace = 'pre-wrap';
+            style.wordWrap = 'break-word';
+            style.position = 'absolute';
+            style.visibility = 'hidden';
+            
+            properties.forEach(prop => {
+                style[prop] = computed[prop];
+            });
+            
+            div.textContent = textarea.value.substring(0, position);
+            
+            const span = document.createElement('span');
+            span.textContent = textarea.value.substring(position) || '.';
+            div.appendChild(span);
+            
+            const coordinates = {
+                top: span.offsetTop,
+                left: span.offsetLeft
+            };
+            
+            document.body.removeChild(div);
+            return coordinates;
+        }
+
+        // Close compiler playground
+        function closePractice() {
+            document.getElementById('compilerWorkspace').classList.remove('show');
+            document.body.style.overflow = ''; // Unlock main scrolling
+        }
+
+        // Reset workspace to original template
+        function resetTemplate() {
+            if (confirm("Are you sure you want to reset your workspace? This will erase all your unsaved modifications.")) {
+                const editor = document.getElementById('codeEditor');
+                editor.value = originalTemplate;
+                updateEditorLineNumbers();
+                editor.focus();
+            }
+        }
+
+        // Run compiler via Judge0 API
+        async function runCompiler() {
+            const btnRun = document.getElementById('btnRun');
+            const editor = document.getElementById('codeEditor');
+            const stdin = document.getElementById('stdinEditor').value;
+            const terminal = document.getElementById('consoleTerminal');
+            const consoleMeta = document.getElementById('consoleMeta');
+            
+            if (btnRun.disabled) return;
+            
+            btnRun.disabled = true;
+            btnRun.textContent = "Compiling...";
+            terminal.className = "console-terminal";
+            terminal.style.color = "#cbd5e1";
+            terminal.textContent = "Initializing sandboxed OpenJDK environment...\nSending payload to remote compiler engine ce.judge0.com...";
+            consoleMeta.textContent = "Time: --- | Memory: ---";
+            
+            // Judge0 request options
+            const payload = {
+                source_code: editor.value,
+                language_id: 62, // Java (OpenJDK 13.0.1)
+                stdin: stdin
+            };
+            
+            try {
+                const response = await fetch('https://ce.judge0.com/submissions?wait=true', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) throw new Error("Compiler engine returned error: " + response.statusText);
+                const data = await response.json();
+                
+                // Parse compilation and execution results
+                const stdout = data.stdout ? data.stdout : "";
+                const stderr = data.stderr ? data.stderr : "";
+                const compileOutput = data.compile_output ? data.compile_output : "";
+                const status = data.status ? data.status.description : "Unknown";
+                const time = data.time ? data.time : "0.00";
+                const memory = data.memory ? (data.memory / 1024).toFixed(1) : "0.0";
+                
+                consoleMeta.textContent = `Time: ${time}s | Memory: ${memory}MB`;
+                
+                if (compileOutput) {
+                    // Compilation error
+                    terminal.className = "console-terminal";
+                    terminal.style.color = "#ef4444"; // Red text for compile errors
+                    terminal.textContent = `⚠️ COMPILATION ERROR:\n\n${compileOutput}`;
+                } else if (stderr) {
+                    // Runtime exception
+                    terminal.className = "console-terminal";
+                    terminal.style.color = "#f97316"; // Orange text for runtime exception
+                    terminal.textContent = `❌ RUNTIME EXCEPTION:\n\n${stderr}`;
+                } else {
+                    // Successful run
+                    terminal.className = "console-terminal";
+                    terminal.style.color = "#22c55e"; // Green text for standard output
+                    terminal.textContent = stdout ? stdout : `✔️ Program executed successfully with status: ${status} (No stdout generated)`;
+                }
+            } catch (e) {
+                terminal.className = "console-terminal";
+                terminal.style.color = "#ef4444";
+                terminal.textContent = `⚠️ FAILED TO CONNECT TO REMOTE COMPILER:\n\n${e.message}\n\nPlease check your internet connection or verify ce.judge0.com is online.`;
+            } finally {
+                btnRun.disabled = false;
+                btnRun.textContent = "🚀 Run Code (Ctrl+Enter)";
+            }
+        }
+
+        // Code Editor Line Numbers generator and real-time syntax highlighter triggers
+        function updateEditorLineNumbers() {
+            const editor = document.getElementById('codeEditor');
+            const lineNumbers = document.getElementById('lineNumbers');
+            if (!editor || !lineNumbers) return;
+            
+            const linesCount = editor.value.split('\n').length;
+            
+            let html = "";
+            for (let i = 1; i <= linesCount; i++) {
+                html += i + "<br>";
+            }
+            lineNumbers.innerHTML = html;
+            
+            updateHighlighting();
+        }
+
+        // Real-time syntax highlighter overlay engine
+        function updateHighlighting() {
+            const editor = document.getElementById('codeEditor');
+            const highlightCode = document.getElementById('highlightCode');
+            if (editor && highlightCode) {
+                let codeText = editor.value;
+                // Add a space to preserve trailing newline scrolling size
+                if (codeText.endsWith('\n')) {
+                    codeText += ' ';
+                }
+                highlightCode.innerHTML = highlightJava(codeText);
+            }
+        }
+
+        // Lightweight Java syntax highlighting parser
+        function highlightJava(code) {
+            if (!code) return "";
+            
+            // Escape HTML characters
+            let escaped = code
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+
+            // Combine regexes for block comments, line comments, strings, keywords, types, annotations, etc.
+            // Using a single master regex prevents matching inside strings/comments.
+            const tokenRegex = /(\/\*[\s\S]*?\*\/)|(\/\/.*)|("(?:\\.|[^"\\])*")|('(?:\\.|[^'\\])*')|(\b(?:package|import|public|protected|private|class|interface|extends|implements|static|final|void|int|double|float|long|boolean|char|byte|short|return|if|else|for|while|do|switch|case|break|continue|new|null|true|false|this|super|throw|throws|try|catch|finally|var)\b)|(\b(?:String|Map|HashMap|Set|HashSet|List|ArrayList|Arrays|Collections|Math|TreeNode|ListNode|IntStream|Collectors|Integer|Double|Boolean|Character|System|out|println)\b)|(@[a-zA-Z_0-9]+)/g;
+
+            return escaped.replace(tokenRegex, (match, blockComment, lineComment, doubleStr, singleStr, keyword, type, annotation) => {
+                if (blockComment) return `<span class="code-comment">${blockComment}</span>`;
+                if (lineComment) return `<span class="code-comment">${lineComment}</span>`;
+                if (doubleStr) return `<span class="code-string">${doubleStr}</span>`;
+                if (singleStr) return `<span class="code-string">${singleStr}</span>`;
+                if (keyword) return `<span class="code-keyword">${keyword}</span>`;
+                if (type) return `<span class="code-type">${type}</span>`;
+                if (annotation) return `<span class="code-comment">${annotation}</span>`;
+                return match;
+            });
+        }
+
+        // Hotkey listeners: Ctrl+Enter to compile, Esc to exit
+        document.addEventListener('keydown', function(event) {
+            const workspace = document.getElementById('compilerWorkspace');
+            if (workspace.classList.contains('show')) {
+                if (event.ctrlKey && event.key === 'Enter') {
+                    event.preventDefault();
+                    runCompiler();
+                } else if (event.key === 'Escape') {
+                    event.preventDefault();
+                    closePractice();
+                }
+            }
+        });
+
+        // Dynamic Variable Autocomplete Scanner
+        function getDeclaredVariables(code) {
+            const declarations = [];
+            // Match standard Java type variable declarations: Type name; or Type name = value;
+            const varRegex = /\b(int|double|boolean|String|char|float|long|var|ListNode|TreeNode|Map|List|Set|HashMap|HashSet|ArrayList)\s+([a-zA-Z_0-9]+)\b/g;
+            let match;
+            while ((match = varRegex.exec(code)) !== null) {
+                const type = match[1];
+                const name = match[2];
+                // Prevent keywords or duplicate matches
+                if (name && !declarations.some(d => d.text === name)) {
+                    declarations.push({ text: name, type: `variable (${type})` });
+                }
+            }
+            return declarations;
+        }
+
+        // Offline Context-Aware Dot Autocomplete Method Harvester
+        function getDotSuggestions(objName, variables) {
+            // Find if objName is a declared variable and get its type
+            const v = variables.find(x => x.text === objName);
+            let typeName = "";
+            if (v) {
+                const m = v.type.match(/variable \(([^)]+)\)/);
+                if (m) {
+                    typeName = m[1];
+                }
+            } else {
+                typeName = objName; // static class e.g. "Arrays", "Math", "System.out"
+            }
+            
+            const listMethods = [
+                { text: "add(", type: "method" },
+                { text: "get(", type: "method" },
+                { text: "size()", type: "method" },
+                { text: "isEmpty()", type: "method" },
+                { text: "contains(", type: "method" },
+                { text: "remove(", type: "method" },
+                { text: "clear()", type: "method" },
+                { text: "set(", type: "method" },
+                { text: "indexOf(", type: "method" }
+            ];
+            
+            const mapMethods = [
+                { text: "put(", type: "method" },
+                { text: "get(", type: "method" },
+                { text: "containsKey(", type: "method" },
+                { text: "containsValue(", type: "method" },
+                { text: "remove(", type: "method" },
+                { text: "size()", type: "method" },
+                { text: "isEmpty()", type: "method" },
+                { text: "clear()", type: "method" },
+                { text: "keySet()", type: "method" },
+                { text: "values()", type: "method" }
+            ];
+            
+            const setMethods = [
+                { text: "add(", type: "method" },
+                { text: "contains(", type: "method" },
+                { text: "remove(", type: "method" },
+                { text: "size()", type: "method" },
+                { text: "isEmpty()", type: "method" },
+                { text: "clear()", type: "method" }
+            ];
+            
+            const stringMethods = [
+                { text: "length()", type: "method" },
+                { text: "charAt(", type: "method" },
+                { text: "substring(", type: "method" },
+                { text: "indexOf(", type: "method" },
+                { text: "equals(", type: "method" },
+                { text: "split(", type: "method" },
+                { text: "startsWith(", type: "method" },
+                { text: "endsWith(", type: "method" },
+                { text: "replace(", type: "method" },
+                { text: "toLowerCase()", type: "method" },
+                { text: "toUpperCase()", type: "method" },
+                { text: "trim()", type: "method" },
+                { text: "isEmpty()", type: "method" }
+            ];
+
+            const stringBuilderMethods = [
+                { text: "append(", type: "method" },
+                { text: "length()", type: "method" },
+                { text: "charAt(", type: "method" },
+                { text: "substring(", type: "method" },
+                { text: "toString()", type: "method" },
+                { text: "delete(", type: "method" },
+                { text: "insert(", type: "method" },
+                { text: "reverse()", type: "method" }
+            ];
+
+            const arraysMethods = [
+                { text: "sort(", type: "method" },
+                { text: "toString(", type: "method" },
+                { text: "binarySearch(", type: "method" },
+                { text: "equals(", type: "method" },
+                { text: "fill(", type: "method" },
+                { text: "copyOf(", type: "method" },
+                { text: "asList(", type: "method" }
+            ];
+
+            const mathMethods = [
+                { text: "max(", type: "method" },
+                { text: "min(", type: "method" },
+                { text: "abs(", type: "method" },
+                { text: "pow(", type: "method" },
+                { text: "sqrt(", type: "method" },
+                { text: "round(", type: "method" },
+                { text: "random()", type: "method" }
+            ];
+
+            const systemOutMethods = [
+                { text: "print(", type: "method" },
+                { text: "println(", type: "method" },
+                { text: "printf(", type: "method" }
+            ];
+
+            const systemMethods = [
+                { text: "out", type: "property" },
+                { text: "err", type: "property" },
+                { text: "currentTimeMillis()", type: "method" },
+                { text: "arraycopy(", type: "method" }
+            ];
+
+            const streamMethods = [
+                { text: "map(", type: "method" },
+                { text: "filter(", type: "method" },
+                { text: "collect(", type: "method" },
+                { text: "forEach(", type: "method" },
+                { text: "reduce(", type: "method" },
+                { text: "sorted(", type: "method" },
+                { text: "distinct()", type: "method" },
+                { text: "limit(", type: "method" },
+                { text: "skip(", type: "method" },
+                { text: "anyMatch(", type: "method" },
+                { text: "allMatch(", type: "method" },
+                { text: "noneMatch(", type: "method" },
+                { text: "findFirst()", type: "method" },
+                { text: "findAny()", type: "method" },
+                { text: "count()", type: "method" },
+                { text: "toArray(", type: "method" }
+            ];
+
+            const collectorsMethods = [
+                { text: "toList()", type: "method" },
+                { text: "toSet()", type: "method" },
+                { text: "toMap(", type: "method" },
+                { text: "joining(", type: "method" },
+                { text: "groupingBy(", type: "method" },
+                { text: "counting()", type: "method" }
+            ];
+
+            const intStreamMethods = [
+                { text: "range(", type: "method" },
+                { text: "rangeClosed(", type: "method" },
+                { text: "of(", type: "method" },
+                { text: "map(", type: "method" },
+                { text: "filter(", type: "method" },
+                { text: "sum()", type: "method" },
+                { text: "average()", type: "method" },
+                { text: "boxed()", type: "method" }
+            ];
+
+            const type = typeName.toLowerCase();
+            if (type.includes("list") || type.includes("arraylist") || type.includes("linkedlist")) {
+                return listMethods;
+            }
+            if (type.includes("map") || type.includes("hashmap")) {
+                return mapMethods;
+            }
+            if (type.includes("set") || type.includes("hashset")) {
+                return setMethods;
+            }
+            if (type === "string") {
+                return stringMethods;
+            }
+            if (type === "stringbuilder") {
+                return stringBuilderMethods;
+            }
+            if (type === "arrays") {
+                return arraysMethods;
+            }
+            if (type === "math") {
+                return mathMethods;
+            }
+            if (type === "system.out" || type === "out") {
+                return systemOutMethods;
+            }
+            if (type === "system") {
+                return systemMethods;
+            }
+            if (type.includes("stream") || type.endsWith("stream()")) {
+                return streamMethods;
+            }
+            if (type === "collectors") {
+                return collectorsMethods;
+            }
+            if (type === "intstream") {
+                return intStreamMethods;
+            }
+            
+            return [];
+        }
+
+        // Offline Block-Level Java Indentation Formatter
+        function formatJavaCode(code) {
+            const lines = code.split('\n');
+            let indentLevel = 0;
+            let formattedLines = [];
+            
+            for (let line of lines) {
+                let trimmed = line.trim();
+                if (!trimmed) {
+                    formattedLines.push('');
+                    continue;
+                }
+                
+                // Track opening and closing braces
+                let closeBraces = (trimmed.match(/\}/g) || []).length;
+                let openBraces = (trimmed.match(/\{/g) || []).length;
+                let netBraces = openBraces - closeBraces;
+                
+                // If a line starts with a closing brace, decrease its current line indentation
+                let currentIndent = indentLevel;
+                if (trimmed.startsWith('}') || trimmed.startsWith('case ') || trimmed.startsWith('default:')) {
+                    currentIndent = Math.max(0, indentLevel - 1);
+                }
+                
+                formattedLines.push('    '.repeat(currentIndent) + trimmed);
+                
+                // Update active indentation level for the next lines
+                indentLevel = Math.max(0, indentLevel + netBraces);
+            }
+            
+            return formattedLines.join('\n');
+        }
+
+        // Formatting Trigger from Workspace Header
+        function formatJavaWorkspace() {
+            const editor = document.getElementById('codeEditor');
+            const originalVal = editor.value;
+            const formattedVal = formatJavaCode(originalVal);
+            
+            // Focus and apply formatting preserving undo history
+            editor.focus();
+            editor.select();
+            if (!document.execCommand("insertText", false, formattedVal)) {
+                editor.value = formattedVal;
+            }
+            
+            updateEditorLineNumbers();
+            
+            // Console feedback message
+            const terminal = document.getElementById('consoleTerminal');
+            terminal.className = "console-terminal";
+            terminal.style.color = "#22c55e";
+            terminal.textContent = "✔️ Code formatted successfully!";
+        }
+
+        // Coding Theme Switcher
+        function changeCodingTheme(themeName) {
+            const workspace = document.getElementById('compilerWorkspace');
+            
+            // Remove previous theme classes
+            workspace.classList.remove('theme-dracula', 'theme-monokai', 'theme-solarized');
+            
+            if (themeName !== 'onedark') {
+                workspace.classList.add(`theme-${themeName}`);
+            }
+        }
     </script>
+
+    <!-- Immersive Practice Playground Workspace -->
+    <div id="compilerWorkspace" class="compiler-workspace">
+        <div class="compiler-header">
+            <div class="compiler-title-area">
+                <h2 id="compilerTitle">Problem Practice Workspace</h2>
+                <span id="compilerDifficulty" class="difficulty easy">Easy</span>
+            </div>
+            <div class="compiler-controls">
+                <select id="themeSelector" class="theme-select" onchange="changeCodingTheme(this.value)">
+                    <option value="onedark" selected>💻 One Dark</option>
+                    <option value="monokai">🎨 Monokai Dark</option>
+                    <option value="dracula">🧛 Dracula Dark</option>
+                    <option value="solarized">☀️ Solarized Light</option>
+                </select>
+                <button class="btn-format" onclick="formatJavaWorkspace()">💅 Format Code</button>
+                <button class="btn-reset" onclick="resetTemplate()">🔄 Reset Code</button>
+                <button id="btnRun" class="btn-run" onclick="runCompiler()">🚀 Run Code (Ctrl+Enter)</button>
+                <span class="compiler-close-btn" onclick="closePractice()">&times;</span>
+            </div>
+        </div>
+        
+        <div class="compiler-grid">
+            <!-- Left Pane: Problem Context -->
+            <div class="compiler-problem-pane">
+                <div>
+                    <h3>Complexity & Metadata</h3>
+                    <div class="compiler-meta-badge" style="margin-top: 10px;">
+                        <p><strong>Complexity Target:</strong> <code id="compilerComplexity">O(n)</code></p>
+                        <p><strong>File Location:</strong> <code id="compilerPath" style="font-size: 0.75rem; word-break: break-all;">src/main/...</code></p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Sample Input</h3>
+                    <div id="compilerInput" class="compiler-sample-box" style="margin-top: 10px;">prices = {7, 1, 5, 3, 6, 4}</div>
+                </div>
+                
+                <div>
+                    <h3>Expected Output</h3>
+                    <div id="compilerOutput" class="compiler-sample-box" style="margin-top: 10px;">5</div>
+                </div>
+
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; opacity: 0.5; font-size: 0.8rem; line-height: 1.5;">
+                    <p>💡 Tip: You can edit and compile the default template code. It imports all standard utilities (java.util.*) by default.</p>
+                </div>
+            </div>
+            
+            <!-- Right Pane: Code Editor & Console -->
+            <div class="compiler-editor-pane">
+                <!-- Editor Box -->
+                <div class="editor-workspace">
+                    <div id="lineNumbers" class="editor-line-numbers">1</div>
+                    <div class="editor-container">
+                        <pre id="highlightOverlay" class="editor-highlight"><code id="highlightCode"></code></pre>
+                        <textarea id="codeEditor" class="editor-textarea" spellcheck="false" placeholder="// Write your code here..."></textarea>
+                    </div>
+                </div>
+                
+                <!-- Console Box -->
+                <div class="console-workspace">
+                    <!-- Standard Input -->
+                    <div class="console-input-area">
+                        <h4>Standard Input (stdin)</h4>
+                        <textarea id="stdinEditor" class="console-stdin-textarea" placeholder="Provide raw input parameters here..."></textarea>
+                    </div>
+                    <!-- Console Output -->
+                    <div class="console-output-area">
+                        <div class="console-output-header">
+                            <h4>Terminal Console Log</h4>
+                            <div id="consoleMeta" class="console-output-meta">Time: 0.00s | Memory: 0.0KB</div>
+                        </div>
+                        <div id="consoleTerminal" class="console-terminal">Press "Run Code" to compile and execute your Java code on remote sandboxed JVM.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
